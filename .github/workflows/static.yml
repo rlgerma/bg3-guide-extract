@@ -36,7 +36,7 @@ jobs:
       - name: Prepare site
         run: |
           mkdir -p _site
-          cp act3-interactive-checklist.html _site/index.html
+          cp index.html _site/index.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

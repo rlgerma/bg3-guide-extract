@@ -1,0 +1,7 @@
+# Never commit raw saves or potentially sensitive campaign data by default.
+incoming/*
+!incoming/.gitkeep
+output/*
+!output/.gitkeep
+*.zip
+__pycache__/

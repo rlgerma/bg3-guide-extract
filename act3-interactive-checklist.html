@@ -1,0 +1,827 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Baldur’s Gate 3 | Chad & Maurow • Act 3 Completionist Guide</title>
+<style>
+:root{color-scheme:dark;--bg:#0e1218;--panel:#1a222d;--panel2:#212c38;--text:#e5e7e8;--muted:#a4adba;--gold:#d8ae6a;--border:#334152;--green:#85c9b3;--red:#f5a19a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);font:16px/1.7 system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--text)}
+header{padding:22px clamp(18px,4vw,54px);background:#151c25;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;box-shadow:0 8px 22px #0004}
+header .brand{font-weight:750;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);font-size:.81rem}header .subtitle{color:var(--muted);font-size:.86rem;margin-top:2px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+input[type=search]{background:#0d151f;color:var(--text);border:1px solid var(--border);padding:10px 12px;border-radius:9px;min-width:230px;flex:1;max-width:490px;font:inherit}
+button,.upload{border:1px solid var(--border);background:var(--panel2);color:var(--text);padding:9px 13px;border-radius:9px;font:inherit;font-size:.85rem;cursor:pointer}
+button:hover,.upload:hover{border-color:var(--gold)}.small{font-size:.8rem;color:var(--muted)}.toolbar label{font-size:.86rem;color:var(--muted)}.toolbar input[type=checkbox]{accent-color:var(--gold)}
+main{display:grid;grid-template-columns:245px minmax(0,950px);gap:30px;max-width:1450px;margin:0 auto;padding:28px clamp(18px,3vw,40px) 90px}
+nav{align-self:start;position:sticky;top:178px;max-height:calc(100vh - 205px);overflow:auto;padding:18px 12px;border:1px solid var(--border);border-radius:12px;background:var(--panel)}
+nav strong{display:block;padding:0 10px 6px;color:var(--gold);font-size:.85rem;letter-spacing:.05em}nav a{display:block;text-decoration:none;color:var(--muted);font-size:.78rem;line-height:1.45;padding:6px 10px;border-radius:6px}
+nav a:hover{background:var(--panel2);color:var(--text)}article{min-width:0}
+h1,h2,h3{line-height:1.25;color:#f1d5a7;font-weight:700;scroll-margin-top:200px}h1{font-size:clamp(1.8rem,3.3vw,2.8rem);margin:0 0 20px}h2{font-size:1.5rem;border-top:1px solid var(--border);padding-top:26px;margin-top:42px}h3{font-size:1.2rem;margin-top:28px}
+p,li{overflow-wrap:anywhere}p{margin:14px 0}blockquote{margin:17px 0;border-left:3px solid var(--gold);background:#1e2630;padding:12px 18px;border-radius:0 8px 8px 0;color:#e3cfad}blockquote p{margin:0}
+strong{color:#f4eee4}a{color:#a8d1e9}a:hover{color:#d6ecff}ul,ol{padding-left:25px}
+ul:has(.task-item){list-style:none;padding-left:0}.task-item{position:relative;padding:10px 14px 10px 46px;margin:6px 0;background:var(--panel);border:1px solid var(--border);border-radius:9px;line-height:1.55}.task-item.completed{opacity:.69}.task-item.completed strong{text-decoration:line-through;text-decoration-color:var(--muted)}
+.task-checkbox{appearance:none;-webkit-appearance:none;display:inline-grid;place-content:center;width:21px;height:21px;border:2px solid #89929d;border-radius:5px;cursor:pointer;background:#111922;flex-shrink:0}.task-item>.task-checkbox{position:absolute;left:13px;top:14px}.task-checkbox:checked{background:var(--green);border-color:var(--green)}.task-checkbox:checked::after{content:'✓';font-size:15px;font-weight:800;color:#0d2420}.task-checkbox:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+pre,code{font-family:ui-monospace,Menlo,Consolas,monospace;background:#182331;border-radius:5px;padding:1px 4px;color:#d4e4f3}pre{padding:14px;overflow:auto}pre code{padding:0}
+table{width:100%;border-collapse:collapse;display:block;overflow-x:auto;margin:17px 0;font-size:.89rem}th,td{border:1px solid var(--border);padding:8px 11px;text-align:left;vertical-align:top;min-width:85px}th{background:#24303d;color:#f0d3a5}tr:nth-child(2n){background:#161f28}tr.piece-item.completed{opacity:.55}tr.piece-item.completed td:nth-child(2){text-decoration:line-through}
+.progressbar{width:min(300px,100%);height:8px;border-radius:20px;background:#364453;overflow:hidden}#progressFill{height:100%;width:0;background:var(--green);transition:width .2s}.progwrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.progwrap strong{font-size:.86rem}
+#feedback{font-size:.78rem;color:var(--muted);min-width:120px}#importFile{display:none}.hidden-task{display:none!important}footer{border-top:1px solid var(--border);padding:18px;color:var(--muted);font-size:.78rem;margin-top:25px}
+@media(max-width:850px){main{display:block;padding:18px}nav{position:static;max-height:none;display:flex;gap:4px;overflow:auto;white-space:nowrap;margin-bottom:18px}nav strong{display:none}nav a{display:inline-block;min-width:130px;white-space:normal;font-size:.75rem}header{position:static}h1,h2,h3{scroll-margin-top:20px}}
+@media print{header,nav{display:none}main{display:block;max-width:none;padding:0}body{background:white;color:black}strong,h1,h2,h3{color:black}.task-item{background:white;color:black;border-color:#bbb;break-inside:avoid}.task-item.completed{opacity:1}a{color:blue}table{display:table}th,td{color:black;border-color:#bbb}blockquote{color:black;background:#eee}}
+</style></head><body>
+<header><div class="brand">Baldur’s Gate 3 · Campaign notebook</div><div class="subtitle">Chad + Maurow always in the party · QuickSave 314 · save-derived facts + researched route · FULL SPOILERS</div>
+<div class="toolbar"><input id="search" type="search" placeholder="Search quests, loot, locations, companions…" aria-label="Search walkthrough">
+<label><input id="hideDone" type="checkbox"> Hide completed</label>
+<button id="export">Export checkmarks</button><label class="upload" for="importFile">Import checkmarks</label><input id="importFile" type="file" accept=".json,application/json"><button id="reset">Clear checkmarks</button></div>
+<div class="toolbar"><div class="progwrap"><strong id="progressText">0 / 178 checked</strong><div class="progressbar"><div id="progressFill"></div></div></div><span id="feedback">Unchecked means unverified, not incomplete. Your save remains authoritative.</span></div>
+</header><main><nav><strong>CONTENTS</strong><a href="#section-2">A. Campaign snapshot: confirmed from the four project files</a>
+<a href="#section-6">Phase 1 — Rivington: complete the approach to the city</a>
+<a href="#section-11">Phase 2 — Wyrm’s Crossing, Sharess’ Caress and Wyrm’s Rock</a>
+<a href="#section-12">Phase 3 — Lower City: urgent tasks and the northeast/central district</a>
+<a href="#section-17">Phase 4 — Companion stories, the Guild, the Hag and the haunted city</a>
+<a href="#section-23">Phase 5 — Optional high-stakes dungeons before the main villains</a>
+<a href="#section-27">Phase 6 — Iron Throne → Steel Watch Foundry → Gortash</a>
+<a href="#section-31">Phase 7 — Murder Tribunal, Orin, and the Undercity</a>
+<a href="#section-34">Phase 8 — Full Dribbles ledger and final city audit</a>
+<a href="#section-35">Phase 9 — Netherbrain finale (only when everything above is settled)</a>
+<a href="#section-36">Gather Your Allies — conditional, non-exhaustive matrix</a>
+<a href="#section-37">Particularly relevant Act 3 equipment for your actual builds</a>
+<a href="#section-39">Act 3 character bonuses and missable mechanical advantages</a>
+<a href="#section-40">Data provenance and what this checklist means</a></nav><article><h1 id="section-1">Baldur’s Gate 3 — Act 3 Completionist Walkthrough</h1>
+<p><strong>Campaign:</strong> Chad and Chase (Maurow) • PS5 multiplayer • <strong>Guide updated:</strong> 2026-11-09<br/>
+<strong>Source of truth:</strong> <code>campaign-state.json</code> extracted from <code>Chad-1241263107__QuickSave_314.lsv</code> • Save 314 • Saved 2026-11-04 03:12 UTC<br/>
+<strong>SHA-256:</strong> <code>5fd51c72de0caaafe6a29c201c6b47ae06f3579deff1719720683589a30ff986</code></p>
+<blockquote>
+<p><strong>FULL SPOILERS.</strong> The save is authoritative; this guide is a route through all available Act 3 content, not a claim that every quest is open. Every box starts <strong>unchecked</strong> until verified in-game or by a future reconciler. Incompatible branches cannot all be completed in one playthrough. <strong>Chad and Maurow ALWAYS remain in the four-person party.</strong></p>
+</blockquote>
+<h2 id="section-2">A. Campaign snapshot: confirmed from the four project files</h2>
+<p>Reviewed <code>campaign-state.json</code>, <code>latest-meta.json</code>, <code>changes.json</code> and original <code>act3-guide.md</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Save evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Current region</td>
+<td><code>WYR_Bridge_SUB</code> for active group: a Wyrm’s Crossing sub-area (exact room unconfirmed)</td>
+</tr>
+<tr>
+<td>Known Act 3 waypoints</td>
+<td>Rivington and Sharess’ Caress; no Lower City waypoint recorded</td>
+</tr>
+<tr>
+<td>Quest records</td>
+<td><strong>25 active</strong>, <strong>74 closed</strong>, 119 finalized goal IDs, not zero</td>
+</tr>
+<tr>
+<td>Difficulty / economy</td>
+<td><code>DifficultyMedium, RulesetLarian</code>; 759 camp supplies; two short rests available</td>
+</tr>
+<tr>
+<td>Save config</td>
+<td>Many mods, including level unlocks, new encounters and extra enemies; vanilla quest dependencies remain the guide baseline</td>
+</tr>
+<tr>
+<td>Romance evidence</td>
+<td><code>dating: ["Minthara"]</code>; does not specify which multiplayer player or prove present dialogue status</td>
+</tr>
+</tbody>
+</table>
+<p>The automatically generated original guide and <code>latest-meta.json</code> say <strong>0 recognized quest records</strong> because the <strong>mapping</strong> is incomplete; the underlying parsed save <strong>does</strong> contain quest IDs. <code>changes.json</code> only says that the previous comparison showed no changes; it does not prove that a quest is complete.</p>
+<p><strong>Current four:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Actual save build</th>
+<th style="text-align:right">Level</th>
+<th>Assignment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chad</strong></td>
+<td>High Elf Battle Master Fighter / Berserker Barbarian, STR 19, DEX 18</td>
+<td style="text-align:right">11</td>
+<td><strong>Permanent</strong></td>
+</tr>
+<tr>
+<td><strong>Maurow</strong></td>
+<td>Lolth-sworn Drow Open Hand Monk, DEX 20, STR 16</td>
+<td style="text-align:right">11</td>
+<td><strong>Permanent</strong></td>
+</tr>
+<tr>
+<td>Gale</td>
+<td><strong>Storm Sorcerer</strong>, not default Wizard</td>
+<td style="text-align:right">11</td>
+<td>Preferred</td>
+</tr>
+<tr>
+<td>Lae’zel</td>
+<td><strong>Oath of the Ancients Paladin</strong>, not default Fighter</td>
+<td style="text-align:right">11</td>
+<td>Preferred</td>
+</tr>
+</tbody>
+</table>
+<p><strong>At camp:</strong> Astarion (Lv 10 Abjuration Wizard/Life Cleric); Shadowheart (Lv 10 Trickery Cleric); Jaheira (Lv 8 Druid); Halsin (Lv 5 Druid); Karlach (Lv 4 Gloom Stalker Ranger); Wyll (Lv 4 Enchantment Wizard/Life Cleric); Minthara (Lv 1, classes unresolved). <strong>Minsc not in the roster.</strong> Level up reserve companions at camp before bringing them into serious fights.</p>
+<p><strong>Active quest IDs particularly relevant to this guide:</strong> <code>GLO_DoubtingArtist</code> (Free the Artist), <code>GLO_FreeOrpheus</code>, <code>GLO_GatherYourAllies</code>, <code>GLO_HelpVoss</code>, <code>LOW_FindBhaalTemple</code>, <code>PLA_GrandDukeRescue</code>, <code>UND_MonkAmulet</code>, <code>WYR_CazadorPalace</code>, <code>WYR_GetGortashGem</code>, <code>SHA_Nightsong</code>, <code>GLO_DealWithTheBrain</code>, and active origin-companion records for Astarion, Gale, Karlach, Lae’zel, Shadowheart, Wyll. <strong>They do not reveal which individual objectives were finished.</strong></p>
+<h3 id="section-3">Required sequencing / missable-content controls</h3>
+<ol>
+<li><strong>Gortash coronation first.</strong> Attend without attacking, talk to Duke Ravengard and Mizora, and trigger Mizora’s camp conversation before visiting the Iron Throne.</li>
+<li><strong>Iron Throne → Foundry → Gortash</strong> (not the reverse). Otherwise Ravengard, Omeluum and/or Gondians can be lost and some questlines fail.</li>
+<li><strong>Minsc must survive.</strong> Bring Jaheira, enable non-lethal melee for the final blow, then persuade the Emperor to protect Minsc.</li>
+<li><strong>Timers:</strong> Florrick execution after <strong>five long rests</strong> from timer initiation. Newspaper damage after <strong>one long rest</strong> once you confront Ettvard Needle. Save Cora/Figaro during the active murder chain.</li>
+<li><strong>Do not board the Morphic Pool skiff until entirely finished.</strong> It is Act 3’s point of no return: no camp, companion swapping, respec or missed side quests afterward.</li>
+<li><strong>Orin’s hostage:</strong> Orin prioritizes an unromanced companion left in camp: <strong>Lae’zel → Halsin → Gale → Minthara → Yenna</strong>. While Lae’zel and Gale are deployed, Halsin is a likely target if available. The hostage is not automatically killed by passage of long rests alone; rescue correctly during the Temple confrontation.</li>
+</ol>
+<h3 id="section-4">Companion loadouts (Chad + Maurow locked)</h3>
+<table>
+<thead>
+<tr>
+<th>Quest/scene</th>
+<th>Recommended third + fourth</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Default exploration, most battles</td>
+<td><strong>Gale + Lae’zel</strong></td>
+<td>Sorcerer control, Counterspell, Haste; Paladin auras, healing, smites</td>
+</tr>
+<tr>
+<td>Tara, Sorcerous Sundries, Mystra</td>
+<td><strong>Gale + Lae’zel</strong></td>
+<td>Gale’s personal dialogue</td>
+</tr>
+<tr>
+<td>Danthelon’s, Minsc, Counting House</td>
+<td><strong>Jaheira + Gale</strong></td>
+<td>Jaheira-specific story; safely recruit Minsc</td>
+</tr>
+<tr>
+<td>Gur / Szarr Palace</td>
+<td><strong>Astarion + Lae’zel</strong></td>
+<td>Astarion’s character quest</td>
+</tr>
+<tr>
+<td>House of Grief</td>
+<td><strong>Shadowheart + Lae’zel</strong></td>
+<td>Companion dialogue and family choice</td>
+</tr>
+<tr>
+<td>Gortash coronation</td>
+<td><strong>Wyll + Karlach</strong></td>
+<td>Duke father/son story plus Karlach’s history</td>
+</tr>
+<tr>
+<td>Grand Duke / Wyrmway</td>
+<td><strong>Wyll + Lae’zel</strong></td>
+<td>Wyll’s companion content, strong martial support</td>
+</tr>
+<tr>
+<td>Gortash final confrontation</td>
+<td><strong>Karlach + Gale</strong></td>
+<td>Karlach story closure; level her up first</td>
+</tr>
+<tr>
+<td>Orin</td>
+<td><strong>Minthara + Lae’zel</strong> (optional)</td>
+<td>Minthara’s history with Orin; default group safer if underleveled</td>
+</tr>
+<tr>
+<td>House of Hope</td>
+<td><strong>Gale + Lae’zel</strong></td>
+<td>Control, smites, Orpheus context</td>
+</tr>
+<tr>
+<td>Hag / old Harpers</td>
+<td><strong>Jaheira or Halsin + Gale</strong></td>
+<td>Extra druid/Harper context; optional</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Multiplayer logistics:</strong> Both players keep their avatars. Assign companion control appropriately before conversations. For story visits, you may swap a quest companion in, trigger unique dialogues, then restore default combat group if the quest permits. With mods changing classes and levels, do not assume any normal origin combat build.</p>
+<h3 id="section-5">Suggested route</h3>
+<p><strong>Rivington audit → Wyrm’s Crossing/Harper safehouse → peaceful coronation → immediate Lower City timers → early Minsc/companion arcs → major optional dungeons → Iron Throne → Steel Watch Foundry → Gortash → Orin/Bhaal Temple → completion audit → Morphic Pool.</strong> Within the Lower City, group nearby tasks rather than follow this as a strict one-by-one street map.</p>
+<hr/>
+<h2 id="section-6">PHASE 1 — Rivington: complete the approach to the city</h2>
+<p><strong>Starting position:</strong> Rivington and Sharess’ Caress waypoints are already known. Backtrack here to audit activities, not to replay completed scenes. Default party, except <strong>Gale</strong> for Tara and <strong>Astarion</strong> for Gur.</p>
+<h3 id="section-7">1A. Refugees, Strange Ox and explosive toys</h3>
+<ul>
+<li class="task-item" id="task-R01"><input aria-label="Mark R01 checked" class="task-checkbox" data-task-id="R01" type="checkbox"/><strong>R01 — Walk the refugee camp and Rivington merchants.</strong> Talk to returning tieflings, Yenna, refugees, guards and Rivington General. Check survivors’ unique conversations and buy supplies. <strong>CHECK IN GAME:</strong> which of these have already happened.</li>
+<li class="task-item" id="task-R02"><input aria-label="Mark R02 checked" class="task-checkbox" data-task-id="R02" type="checkbox"/><strong>R02 — Help the Devilish Ox <em>before Lower City entry</em>.</strong> At the stable near the Requisitioned Barn, use <strong>Speak with Animals</strong>, agree to smuggle the ox and pick up its <strong>Strange Apple</strong>. Carry it into the Lower City for the Ox as a final ally. <strong>Multiplayer special:</strong> the apple should be held by <strong>the multiplayer host (Chad, if he is hosting)</strong> or a companion when entering the Lower City; the wiki documents missing rewards when carried by a non-host player avatar.</li>
+<li class="task-item" id="task-R03"><input aria-label="Mark R03 checked" class="task-checkbox" data-task-id="R03" type="checkbox"/><strong>R03 — Investigate Requisitioned Barn donation crates.</strong> Speak to Manip Nestor, inspect suspected toys and identify explosives. Obtain the quest lead toward <strong>Arfur Gregorio</strong>.</li>
+<li class="task-item" id="task-R04"><input aria-label="Mark R04 checked" class="task-checkbox" data-task-id="R04" type="checkbox"/><strong>R04 — Arfur’s Mansion.</strong> Resolve the refugee confrontation, enter the mansion, disarm basement traps and read the <strong>Blackmail Letter</strong>. Confront Arfur there or later at Sharess’ Caress to learn about <strong>Felogyr’s Fireworks</strong> in the Lower City and secure a coronation pass if available.</li>
+<li class="task-item" id="task-R05"><input aria-label="Mark R05 checked" class="task-checkbox" data-task-id="R05" type="checkbox"/><strong>R05 — Seek out Ironhand gnomes / Wulbren.</strong> Locate the Rivington hideout and take the Steel Watch lead. <strong>Do not plant the Runepowder Bomb or blow the Foundry yet</strong>; rescue Gondian families at the Iron Throne first. Barcus-versus-Wulbren leadership is a mutually exclusive outcome.</li>
+<li class="task-item" id="task-R06"><input aria-label="Mark R06 checked" class="task-checkbox" data-task-id="R06" type="checkbox"/><strong>R06 — Resolve the shore-side Guild / Stone Lord confrontation</strong> near the coast and speak to survivors. This feeds into <strong>Aid the Underduke</strong> later.</li>
+</ul>
+<h3 id="section-8">1B. Circus of the Last Days: jackpot and Dribbles</h3>
+<ul>
+<li class="task-item" id="task-R07"><input aria-label="Mark R07 checked" class="task-checkbox" data-task-id="R07" type="checkbox"/><strong>R07 — Explore the circus and speak to Lucretious.</strong> Start <strong>Find Dribbles the Clown</strong>; later collect seven severed pieces from across Act 3. Deal with the bogus clown performance.</li>
+<li class="task-item" id="task-R08"><input aria-label="Mark R08 checked" class="task-checkbox" data-task-id="R08" type="checkbox"/><strong>R08 — Visit Boney and Stoney, Zethino, Popper and every stall.</strong> Buy/use interesting services, including the custom statue if desired, before the circus leaves.</li>
+<li class="task-item" id="task-R09"><input aria-label="Mark R09 checked" class="task-checkbox" data-task-id="R09" type="checkbox"/><strong>R09 — Take Dribbles’ severed hand</strong> from Popper’s stall by dialogue, purchase or theft. <strong>Maurow’s drow-specific intimidation option</strong> is favorable.</li>
+<li class="task-item" id="task-R10"><input aria-label="Mark R10 checked" class="task-checkbox" data-task-id="R10" type="checkbox"/><strong>R10 — Win Akabi’s jackpot.</strong> Detect his cheating and neutralize the rigging; the winner is sent <strong>alone</strong> to the Jungle. Pick <strong>Chad or Maurow</strong> with lockpicks, movement and enough damage to survive. Search for <strong>Nyrulna</strong> (painted chest near exit) and <strong>Band of the Mystic Scoundrel</strong> before leaving. <strong>Nyrulna</strong> is particularly good for a thrown-weapon Chad; do not accidentally end the solo excursion without looting both.</li>
+<li class="task-item" id="task-R11"><input aria-label="Mark R11 checked" class="task-checkbox" data-task-id="R11" type="checkbox"/><strong>R11 — Keep the Dribbles quest open until all seven parts are found.</strong> Turning them all in makes the circus leave after a later long rest. Final reward: <strong>Spellmight Gloves</strong> (excellent for Gale’s attack-roll spells such as Scorching Ray, but the accuracy penalty matters).</li>
+</ul>
+<h3 id="section-9">1C. Open Hand Temple: murder + monk + Tara</h3>
+<ul>
+<li class="task-item" id="task-R12"><input aria-label="Mark R12 checked" class="task-checkbox" data-task-id="R12" type="checkbox"/><strong>R12 — Speak to Sister Yannis and investigate Father Lorgan’s murder.</strong> Examine evidence, the victims, and the Open Hand Temple. <strong>Speak with Dead</strong> can reveal useful facts. This starts <strong>Solve the Open Hand Temple Murders</strong>.</li>
+<li class="task-item" id="task-R13"><input aria-label="Mark R13 checked" class="task-checkbox" data-task-id="R13" type="checkbox"/><strong>R13 — Follow the active <code>UND_MonkAmulet</code> quest.</strong> Bring the <strong>Sentient Amulet</strong> (the save contains its item ID). Ask Yannis about <strong>Shirra Clarwen</strong>, learn she died, enter the crypt, investigate her tomb and speak with the monk’s spirit. Choose whether to accept the curse, understanding the consequences. <strong>CHECK IN GAME:</strong> actual holder and how far this quest progressed.</li>
+<li class="task-item" id="task-R14"><input aria-label="Mark R14 checked" class="task-checkbox" data-task-id="R14" type="checkbox"/><strong>R14 — Enter the crypt’s concealed murder tunnels.</strong> From the kitchen hatch, follow the blood trail and use hidden wall buttons or the break in the masonry. Fight the doppelgangers. Pick up the <strong>Flowery Key</strong>, <strong>Stillmaker</strong> (murder weapon), other evidence and <strong>Dribbles’ severed torso</strong> from the nearby body.</li>
+<li class="task-item" id="task-R15"><input aria-label="Mark R15 checked" class="task-checkbox" data-task-id="R15" type="checkbox"/><strong>R15 — Visit Sword Coast Couriers.</strong> Speak with Danzo Arkwright and pigeons (via <strong>Speak with Animals</strong>) to trigger <strong>Find the Missing Letters</strong>.</li>
+<li class="task-item" id="task-R16"><input aria-label="Mark R16 checked" class="task-checkbox" data-task-id="R16" type="checkbox"/><strong>R16 — Bring Gale to the Open Hand Temple rooftop to meet Tara.</strong> Gale recognizes the tressym. Retrieve the <strong>Bundle of Letters</strong> and <strong>Ring of Blink</strong> without hurting Tara, persuade her to leave the pigeons alone, then return letters to Danzo. This is a particularly valuable Gale story scene.</li>
+<li class="task-item" id="task-R17"><input aria-label="Mark R17 checked" class="task-checkbox" data-task-id="R17" type="checkbox"/><strong>R17 — Audit rooftop, temple crypt and minor loot</strong>, including detectable buried treasure and additional reading material before moving north.</li>
+</ul>
+<h3 id="section-10">1D. Gur Camp and Rivington clean-up</h3>
+<ul>
+<li class="task-item" id="task-R18"><input aria-label="Mark R18 checked" class="task-checkbox" data-task-id="R18" type="checkbox"/><strong>R18 — Take Astarion to the Gur Camp.</strong> Speak to <strong>Ulma</strong> about abducted Gur children, promise to investigate Cazador and note his response. This builds on active <code>WYR_CazadorPalace</code>.</li>
+<li class="task-item" id="task-R19"><input aria-label="Mark R19 checked" class="task-checkbox" data-task-id="R19" type="checkbox"/><strong>R19 — Check for unexplored encounters and previous-Act survivors</strong> at the southern outskirts, graveyard areas and surrounding houses. Missing NPCs can be conditional on your earlier choices; do not infer they are alive simply from a quest ID.</li>
+<li class="task-item" id="task-R21"><input aria-label="Mark R21 checked" class="task-checkbox" data-task-id="R21" type="checkbox"/><strong>R21 — Check the Abandoned Windmill.</strong> The <strong>Feed the Mind Flayer</strong> side quest is an ethically branching encounter. Its food requests are not required for a “save everyone” route; investigate and log the outcome if available.</li>
+<li class="task-item" id="task-R20"><input aria-label="Mark R20 checked" class="task-checkbox" data-task-id="R20" type="checkbox"/><strong>R20 — Final Rivington pass:</strong> Strange Apple obtained? Dribbles hand + torso? Tara letters returned? Monk resolved? Arfur lead collected? Gur spoken to? Then continue to Wyrm’s Crossing.</li>
+</ul>
+<hr/>
+<h2 id="section-11">PHASE 2 — Wyrm’s Crossing, Sharess’ Caress and Wyrm’s Rock</h2>
+<p><strong>Party:</strong> Gale + Lae’zel normally; <strong>Astarion</strong> at Fraygo’s and <strong>Jaheira</strong> at Danthelon’s; <strong>Wyll + Karlach</strong> for the coronation if desired.</p>
+<ul>
+<li class="task-item" id="task-W01"><input aria-label="Mark W01 checked" class="task-checkbox" data-task-id="W01" type="checkbox"/><strong>W01 — Search Fraygo’s Flophouse.</strong> Use the <strong>Flowery Key</strong> in its concealed upper room. Collect the <strong>Bloodstained Parchment</strong>, serial-killer target list and other murder evidence. This connects the Open Hand murders to the Lower City Bhaal conspiracy.</li>
+<li class="task-item" id="task-W02"><input aria-label="Mark W02 checked" class="task-checkbox" data-task-id="W02" type="checkbox"/><strong>W02 — Talk to spawn Petras and Dalyria</strong> in the Flophouse with <strong>Astarion</strong> for information about Cazador’s Black Mass. Save first if you want his complete dialogue.</li>
+<li class="task-item" id="task-W03"><input aria-label="Mark W03 checked" class="task-checkbox" data-task-id="W03" type="checkbox"/><strong>W03 — Search Sharess’ Caress.</strong> Meet Mamzell Amira and investigate the disappearance of <strong>Ffion</strong>, the “Stern Librarian”; inspect her room and follow the clues to the outcome. Find Arfur here if he fled Rivington.</li>
+<li class="task-item" id="task-W04"><input aria-label="Mark W04 checked" class="task-checkbox" data-task-id="W04" type="checkbox"/><strong>W04 — Meet Raphael and Kith’rak Voss</strong> with <strong>Lae’zel</strong>. Discuss the <strong>Orphic Hammer</strong> for <code>GLO_FreeOrpheus</code> / <code>GLO_HelpVoss</code>. For a route with the most optional content, <strong>decline Raphael’s Crown of Karsus bargain for now</strong>, then plan a House of Hope heist. Signing and later stealing your contract is an alternative valid branch; not both outcomes can coexist.</li>
+<li class="task-item" id="task-W05"><input aria-label="Mark W05 checked" class="task-checkbox" data-task-id="W05" type="checkbox"/><strong>W05 — Report murder evidence to Investigator Valeria</strong>, usually at Sharess’ Caress, to get the introduction to <strong>Gauntlet Devella</strong> in the Lower City. Do not assume that a broader <code>LOW_FindBhaalTemple</code> record means the murders are already all resolved.</li>
+<li class="task-item" id="task-W06"><input aria-label="Mark W06 checked" class="task-checkbox" data-task-id="W06" type="checkbox"/><strong>W06 — Visit Danthelon’s Dancing Axe with Jaheira.</strong> Speak to Entharl, descend to the Harper hideout, heed Geraldus’s strange warning, defeat the compromised Harpers and protect Geraldus if possible. This begins <strong>The High Harper</strong> path to <strong>Minsc</strong>.</li>
+<li class="task-item" id="task-W07"><input aria-label="Mark W07 checked" class="task-checkbox" data-task-id="W07" type="checkbox"/><strong>W07 — Inspect Crossing vendors, roofs and minor interactions</strong> including Naoise, as desired. Restock thieves’ tools, mobility scrolls and consumables. Check the Ironhands’ hideout/lead if you missed it in Rivington.</li>
+<li class="task-item" id="task-W08"><input aria-label="Mark W08 checked" class="task-checkbox" data-task-id="W08" type="checkbox"/><strong>W08 — Find a safe way into Wyrm’s Rock Fortress</strong> using Arfur’s coronation pass, alternative dialogue, or movement/stealth rather than making the whole fortress hostile.</li>
+<li class="task-item" id="task-W09"><input aria-label="Mark W09 checked" class="task-checkbox" data-task-id="W09" type="checkbox"/><strong>W09 — Attend Gortash’s coronation <em>without attacking</em>.</strong> Consider <strong>Chad + Maurow + Wyll + Karlach</strong> for their personal scenes. Watch Duke Ravengard preside. A temporary truce with Gortash does not force your eventual ending.</li>
+<li class="task-item" id="task-W10"><input aria-label="Mark W10 checked" class="task-checkbox" data-task-id="W10" type="checkbox"/><strong>W10 — Speak with Duke Ravengard after the coronation</strong> and meet <strong>Mizora</strong> near the fortress. <strong>Before Iron Throne</strong>, take the needed long rest to resolve her camp pact scene. Saving Ravengard does <strong>not</strong> require signing away Wyll’s soul if the rescue is executed properly.</li>
+<li class="task-item" id="task-W11"><input aria-label="Mark W11 checked" class="task-checkbox" data-task-id="W11" type="checkbox"/><strong>W11 — Free Counsellor Florrick</strong> from Wyrm’s Rock Prison <strong>if alive and available</strong>. Once you read an execution notice/otherwise activate her execution timer, you have <strong>five long rests</strong>. Find her cell, persuade her and escort her out quietly. Speak to her outside to secure possible final-battle support.</li>
+<li class="task-item" id="task-W12"><input aria-label="Mark W12 checked" class="task-checkbox" data-task-id="W12" type="checkbox"/><strong>W12 — Investigate the prison’s dragon clue</strong> and the secret entrance associated with lightning and the <strong>Legend of Ansur</strong>. Leave the actual Wyrmway for the later <strong>Wyll</strong> quest cluster if you prefer.</li>
+<li class="task-item" id="task-W13"><input aria-label="Mark W13 checked" class="task-checkbox" data-task-id="W13" type="checkbox"/><strong>W13 — Enter the Lower City carrying the Strange Apple</strong> in <strong>the multiplayer host’s or a companion’s inventory</strong>. Confirm Ox ally progress. <strong>Do not fight Gortash here.</strong></li>
+</ul>
+<hr/>
+<h2 id="section-12">PHASE 3 — Lower City: urgent tasks and the northeast/central district</h2>
+<p><strong>Rule:</strong> as soon as a timed activity is triggered, finish it before your next long rest. The same city also contains many harmless-to-delay quests. Use waypoints and group nearby buildings.</p>
+<h3 id="section-13">3A. The first Lower City day: deadlines and serial killer</h3>
+<ul>
+<li class="task-item" id="task-L01"><input aria-label="Mark L01 checked" class="task-checkbox" data-task-id="L01" type="checkbox"/><strong>L01 — Mark the Basilisk Gate waypoint and survey the first district.</strong> Check merchants, Elfsong Tavern, barracks and map pins. Talk to <strong>Gauntlet Devella</strong> about the murder list if referred by Valeria.</li>
+<li class="task-item" id="task-L02"><input aria-label="Mark L02 checked" class="task-checkbox" data-task-id="L02" type="checkbox"/><strong>L02 — Free Florrick immediately if her five-rest countdown is already ticking.</strong> Return to Wyrm’s Rock Prison if you have not done W11; read execution notices only when ready to handle the timed sequence.</li>
+<li class="task-item" id="task-L03"><input aria-label="Mark L03 checked" class="task-checkbox" data-task-id="L03" type="checkbox"/><strong>L03 — Start <em>Stop the Presses</em> only when ready to finish it.</strong> Talking to <strong>Estra Stir</strong> starts investigation; speaking to <strong>Ettvard Needle</strong> at Baldur’s Mouth activates the negative-publicity countdown. Once you confront Ettvard, infiltrate the basement press area <strong>before your next long rest</strong>, remove the hit piece and insert a positive article (e.g., the heroes who slew Ketheric). Avoid ordinary guard combat when possible; reach the press via stealth/invisibility or the building’s roof approaches.</li>
+<li class="task-item" id="task-L04"><input aria-label="Mark L04 checked" class="task-checkbox" data-task-id="L04" type="checkbox"/><strong>L04 — Investigate <em>Roveer’s Storehouse</em>.</strong> Speak to Chef Roveer in Elfsong Tavern; clear the rats in the cellar and collect rewards. Roveer also appears on the Bhaalist target list.</li>
+<li class="task-item" id="task-L05"><input aria-label="Mark L05 checked" class="task-checkbox" data-task-id="L05" type="checkbox"/><strong>L05 — Save Cora Highberry</strong> at the Wine Festival if alive: investigate the disguised wine merchant <strong>Dolor</strong>, intervene before poisoned wine/assassination, stop or pursue him. <strong>Do not wander away or long rest after the active encounter</strong> if you care about saving her.</li>
+<li class="task-item" id="task-L06"><input aria-label="Mark L06 checked" class="task-checkbox" data-task-id="L06" type="checkbox"/><strong>L06 — Save Figaro Pennygood and Devella</strong> at <strong>Facemaker’s Boutique</strong> if Dolor escapes the wine festival. Interrupt the execution scene immediately (avoid dialogue options that let him finish a victim); protect Devella, defeat Dolor and read his clues.</li>
+<li class="task-item" id="task-L07"><input aria-label="Mark L07 checked" class="task-checkbox" data-task-id="L07" type="checkbox"/><strong>L07 — Get the killer’s notes, hands and passphrase.</strong> Read the <strong>Torn and Bloody Page</strong> and the clue for <strong>Candulhallow’s Tombstones</strong>. This opens the <strong>Murder Tribunal</strong> route later. Your save already records <code>LOW_FindBhaalTemple</code>, but its subtasks are not resolved; verify exact current state.</li>
+<li class="task-item" id="task-L08"><input aria-label="Mark L08 checked" class="task-checkbox" data-task-id="L08" type="checkbox"/><strong>L08 — Optional murder-list audit:</strong> visit other named targets (including Nesha Leesha and Roveer), the Peartree and Rainforest murder sites, then record who survived. Additional murders cannot be “undone” retroactively; missing NPCs may reflect earlier events.</li>
+</ul>
+<h3 id="section-14">3B. Elfsong Tavern, Emperor hideout, city secrets</h3>
+<ul>
+<li class="task-item" id="task-L09"><input aria-label="Mark L09 checked" class="task-checkbox" data-task-id="L09" type="checkbox"/><strong>L09 — Search Elfsong Tavern.</strong> Talk to the proprietor, Fist guards and chef; investigate <strong>Duke Stelmane’s</strong> murder and other evidence. Optionally rent the upstairs camp rooms.</li>
+<li class="task-item" id="task-L10"><input aria-label="Mark L10 checked" class="task-checkbox" data-task-id="L10" type="checkbox"/><strong>L10 — Complete <em>Visit the Emperor’s Old Hideout</em>.</strong> Explore the Elfsong cellar, fight through its encounter, open the concealed passage and thoroughly loot the Emperor’s personal chambers. Speak to the Emperor to complete the memory sequence.</li>
+<li class="task-item" id="task-L11"><input aria-label="Mark L11 checked" class="task-checkbox" data-task-id="L11" type="checkbox"/><strong>L11 — Browse shops and hidden spaces.</strong> Visit <strong>Stormshore Tabernacle</strong>, the docks, the city graveyard and any accessible merchants. Pay attention to donations at the Tabernacle, its basement traps/treasures, and the consequences of stealing from a temple.</li>
+<li class="task-item" id="task-L12"><input aria-label="Mark L12 checked" class="task-checkbox" data-task-id="L12" type="checkbox"/><strong>L12 — Check Dammon at the Forge of the Nine</strong> if he survived the earlier acts. Bring <strong>Karlach</strong> for any remaining engine conversations and see whether her earlier upgrades have been applied. Do not invent a third upgrade that the game's storyline does not offer.</li>
+<li class="task-item" id="task-L13"><input aria-label="Mark L13 checked" class="task-checkbox" data-task-id="L13" type="checkbox"/><strong>L13 — Locate Araj Oblodra’s <em>Crimson Draughts</em></strong> if available, and other character-specific returning NPCs. Their availability depends on Act 2 decisions; read dialogue carefully before accepting permanent effects.</li>
+<li class="task-item" id="task-L14"><input aria-label="Mark L14 checked" class="task-checkbox" data-task-id="L14" type="checkbox"/><strong>L14 — Check Volo near the Steel Watch Foundry.</strong> If surrounded by an angry mob, rescue him from a dangerous exploding-barge setup, then speak to him at camp to secure his support for the final battle.</li>
+</ul>
+<h3 id="section-15">3C. Sorcerous Sundries, Gale, the Nightsong and the vault</h3>
+<p><strong>Party:</strong> <strong>Chad + Maurow + Gale + Lae’zel</strong>. This cluster is unusually important because both <code>ORI_COM_Gale</code> and <code>SHA_Nightsong</code> remain active in the save.</p>
+<ul>
+<li class="task-item" id="task-L15"><input aria-label="Mark L15 checked" class="task-checkbox" data-task-id="L15" type="checkbox"/><strong>L15 — Enter Sorcerous Sundries and speak to Tolna Tome-Monger</strong> about forbidden Netherese books. With Gale present, find the portal to the <strong>Sorcerous Vault</strong> via Tolna’s office or Ramazith’s Tower.</li>
+<li class="task-item" id="task-L16"><input aria-label="Mark L16 checked" class="task-checkbox" data-task-id="L16" type="checkbox"/><strong>L16 — Recover <em>The Annals of Karsus</em>.</strong> Navigate the vault’s magic-door puzzle; let <strong>Gale</strong> read the Annals for his Crown of Karsus dialogue. Talk to Gale afterward; make his ultimate choice intentionally rather than leaving it to an unseen flag.</li>
+<li class="task-item" id="task-L17"><input aria-label="Mark L17 checked" class="task-checkbox" data-task-id="L17" type="checkbox"/><strong>L17 — Recover <em>The Tharchiate Codex</em></strong> from the Elminster area of the vault, if you still have/used <strong>Necromancy of Thay</strong> in Acts 1–2. The Codex unlocks the final reading and <strong>Danse Macabre</strong> for the qualifying reader. <strong>Remove Curse</strong> can convert the Codex’s initial Withering into <strong>Tharchiate Vigour</strong>; ensure the correct character reads it.</li>
+<li class="task-item" id="task-L18"><input aria-label="Mark L18 checked" class="task-checkbox" data-task-id="L18" type="checkbox"/><strong>L18 — Search the Sorcerous Vault completely.</strong> Check hidden/invisible chests (use <strong>See Invisibility</strong>), the genie lamp, special scrolls, Foebreaker and the Pyroquickness Hat. Inspect every vault room, not just the quest objective shelf.</li>
+<li class="task-item" id="task-L19"><input aria-label="Mark L19 checked" class="task-checkbox" data-task-id="L19" type="checkbox"/><strong>L19 — Confront Lorroakan in Ramazith’s Tower.</strong> Use the <strong>pale-blue northeast portal</strong> corresponding to the claim that the Nightsong is a divine immortal. Talk to Lorroakan; do <strong>not</strong> hand over Dame Aylin if keeping your existing allies and maximizing their story is the goal.</li>
+<li class="task-item" id="task-L20"><input aria-label="Mark L20 checked" class="task-checkbox" data-task-id="L20" type="checkbox"/><strong>L20 — Warn Dame Aylin and return to oppose Lorroakan.</strong> Check whether <strong>Rolan, Cal and Lia</strong> survived Acts 1–2; Rolan may side with you according to that history and the conversation. Save Aylin; after the fight, speak to Rolan and Isobel/Aylin as available, then long rest where appropriate to confirm final ally updates.</li>
+<li class="task-item" id="task-L21"><input aria-label="Mark L21 checked" class="task-checkbox" data-task-id="L21" type="checkbox"/><strong>L21 — Thoroughly explore Ramazith’s Tower lower levels.</strong> Claim <strong>Markoheshkir</strong>, <strong>Robe of the Weave</strong> and useful scrolls. <strong>Gale</strong> is the natural Markoheshkir candidate in your save as a Storm Sorcerer; selecting lightning powers pairs with his Storm magic.</li>
+<li class="task-item" id="task-L22"><input aria-label="Mark L22 checked" class="task-checkbox" data-task-id="L22" type="checkbox"/><strong>L22 — Advance Gale’s Mystra storyline.</strong> Take him to the <strong>Stormshore Tabernacle</strong> for the requested conversation, and resolve the path regarding the Crown of Karsus. Decide whether the desired epilogue is restitution, personal ambition or another available outcome; not all are compatible.</li>
+</ul>
+<h3 id="section-16">3D. City side stories — complete as they become geographically convenient</h3>
+<ul>
+<li class="task-item" id="task-L23"><input aria-label="Mark L23 checked" class="task-checkbox" data-task-id="L23" type="checkbox"/><strong>L23 — Investigate Felogyr’s Fireworks</strong> using Arfur’s password if obtained. Inspect upper floors; expose and defeat Banite explosive-makers. Prepare for environmental blast damage and nearby law enforcement. This completes <strong>Investigate the Suspicious Toys</strong>.</li>
+<li class="task-item" id="task-L24"><input aria-label="Mark L24 checked" class="task-checkbox" data-task-id="L24" type="checkbox"/><strong>L24 — Investigate <em>Find Mol</em>.</strong> Go to the <strong>Guildhall</strong> through its underground entrance, meet Mol if alive and follow up on her Raphael connection. Recover Mol’s contract from the <strong>House of Hope</strong> later if pursuing her as an ally; avoid giving it to her without considering her story choice.</li>
+<li class="task-item" id="task-L25"><input aria-label="Mark L25 checked" class="task-checkbox" data-task-id="L25" type="checkbox"/><strong>L25 — Explore the city’s special merchants, locked homes and side basements.</strong> Check <strong>Peartree House</strong>, <strong>Rainforest’s Home</strong>, <strong>Lavernica’s Home</strong>, <strong>Stormshore Tabernacle</strong> and <strong>Facemaker’s Boutique</strong> for Dribbles parts, lore, gear and rare vendors.</li>
+<li class="task-item" id="task-L27"><input aria-label="Mark L27 checked" class="task-checkbox" data-task-id="L27" type="checkbox"/><strong>L27 — Explore docks and any Society of Brilliance activity</strong> for <strong>Omeluum/Blurg</strong> follow-up if they survived previous decisions. Omeluum can be imprisoned in the Iron Throne; do not assume it is present merely because an earlier quest closed.</li>
+<li class="task-item" id="task-L28"><input aria-label="Mark L28 checked" class="task-checkbox" data-task-id="L28" type="checkbox"/><strong>L28 — Continue Gale’s Tara rooftop encounters.</strong> After the Rivington meeting with <strong>Gale present</strong>, check the roof of the <strong>Devil’s Fee</strong>. Tara’s <strong>Hat of the Sharp Caster</strong> trade has a version-sensitive issue: the current wiki notes that you may need to retrieve the hat from Sorcerous Sundries’ entrance awning, reverse-pickpocket it onto Tara, then buy it to advance her schedule. After a <strong>long rest</strong>, check <strong>Highberry’s Home</strong> roof for <strong>Slinging Shoes</strong>. Her trades may require fish or magical items. If the game version differs, record what is actually available rather than assuming the old trade path works.</li>
+</ul>
+<hr/>
+<h2 id="section-17">PHASE 4 — Companion stories, the Guild, the Hag and the haunted city</h2>
+<p>These arcs are best cleared <em>before</em> destabilizing Gortash’s rule or reaching the final confrontation. They can be interleaved by neighborhood. <strong>Only Chad and Maurow are permanent; change the other two as marked.</strong></p>
+<h3 id="section-18">4A. Jaheira, the Stone Lord and Minsc — high priority</h3>
+<p><strong>Party:</strong> <strong>Chad + Maurow + Jaheira + Gale</strong>. Raise Jaheira’s levels first. The Danthelon’s safehouse investigation (W06) should already be done.</p>
+<ul>
+<li class="task-item" id="task-C01"><input aria-label="Mark C01 checked" class="task-checkbox" data-task-id="C01" type="checkbox"/><strong>C01 — Enter the Guildhall and meet Nine-Fingers Keene.</strong> Discuss the Stone Lord and the Guild–Zhentarim struggle. Speak to Mol if present. Save before committing to an alliance.</li>
+<li class="task-item" id="task-C02"><input aria-label="Mark C02 checked" class="task-checkbox" data-task-id="C02" type="checkbox"/><strong>C02 — Visit the Counting House and descend to its high-security vaults.</strong> Follow Jaheira’s leads about the Stone Lord; deal with the ambush and observe <strong>Minsc</strong>. Investigate the vaults (including loot behind specialty keys) and talk to banker <strong>Rakath</strong> about his stolen gold.</li>
+<li class="task-item" id="task-C03"><input aria-label="Mark C03 checked" class="task-checkbox" data-task-id="C03" type="checkbox"/><strong>C03 — Track Minsc into the sewers</strong> by following the clues to the cistern and his hideout. Use Jaheira for contextual dialogue. Manipulated Minsc is not deliberately your enemy.</li>
+<li class="task-item" id="task-C04"><input aria-label="Mark C04 checked" class="task-checkbox" data-task-id="C04" type="checkbox"/><strong>C04 — RECRUIT MINSC, DON'T KILL HIM.</strong> Set <strong>Non-Lethal Attacks</strong> ON, ensure the <strong>finishing blow is a melee weapon or unarmed strike</strong>, and avoid residual damaging surfaces near Minsc. Kill/defeat the other hostiles, knock Minsc out, then persuade the Emperor to shield him. Follow him to <strong>Boo</strong>. If Minsc dies, he cannot be revived and Jaheira can leave permanently.</li>
+<li class="task-item" id="task-C05"><input aria-label="Mark C05 checked" class="task-checkbox" data-task-id="C05" type="checkbox"/><strong>C05 — Return to camp, speak to Jaheira and newly recruited Minsc</strong>, and check any new companion-specific lines. If desired, temporarily slot <strong>Jaheira + Minsc</strong> alongside Chad/Maurow to revisit their story locations, including <strong>Elerrathin’s Home</strong> and Jaheira’s family.</li>
+<li class="task-item" id="task-C06"><input aria-label="Mark C06 checked" class="task-checkbox" data-task-id="C06" type="checkbox"/><strong>C06 — Resolve <em>Aid the Underduke</em>.</strong> Return to the Guildhall and support the <strong>Guild</strong> or the <strong>Zhentarim</strong> in the attempted coup. A well-preserved Guild under Nine-Fingers is the generally cohesive route with Jaheira/Minsc. The two factions provide <strong>mutually exclusive</strong> allies.</li>
+<li class="task-item" id="task-C07"><input aria-label="Mark C07 checked" class="task-checkbox" data-task-id="C07" type="checkbox"/><strong>C07 — Complete <em>Return Rakath’s Gold</em></strong> by recovering or replacing the stolen funds (nominally <strong>10,000 gold</strong>, with alternate arrangements possible), returning to Rakath and collecting reward and high-security vault access. Do not confuse completing the money quest with recruiting Minsc.</li>
+</ul>
+<h3 id="section-19">4B. Astarion and Cazador — active <code>WYR_CazadorPalace</code></h3>
+<p><strong>Party:</strong> <strong>Chad + Maurow + Astarion + Lae’zel</strong>. Prepare sunlight/radiant options and escape mobility; level Astarion before the palace.</p>
+<ul>
+<li class="task-item" id="task-C08"><input aria-label="Mark C08 checked" class="task-checkbox" data-task-id="C08" type="checkbox"/><strong>C08 — Confirm Gur and spawn dialogue</strong> in Rivington/Fraygo’s has been obtained as far as possible. Handle any vampire spawn camp attack without accidentally losing Astarion.</li>
+<li class="task-item" id="task-C09"><input aria-label="Mark C09 checked" class="task-checkbox" data-task-id="C09" type="checkbox"/><strong>C09 — Enter Szarr Palace</strong> through the Lower City ramparts/guard access. Explore rooms, read the household records and learn about <strong>Cazador’s ritual</strong>.</li>
+<li class="task-item" id="task-C10"><input aria-label="Mark C10 checked" class="task-checkbox" data-task-id="C10" type="checkbox"/><strong>C10 — Obtain access to the Sinister Door</strong> using the Szarr signet ring and the required linguistic clue; search the kennels, interrogate <strong>Godey</strong>, and read the dictionary/notes. Check the creepy, locked chambers and special treasure on the way down.</li>
+<li class="task-item" id="task-C11"><input aria-label="Mark C11 checked" class="task-checkbox" data-task-id="C11" type="checkbox"/><strong>C11 — Speak with imprisoned spawn and Gur children.</strong> Decide your approach to the ritual <em>before</em> initiating combat. These conversations are central to Astarion’s ending.</li>
+<li class="task-item" id="task-C12"><input aria-label="Mark C12 checked" class="task-checkbox" data-task-id="C12" type="checkbox"/><strong>C12 — Fight Cazador.</strong> If Astarion is pulled into the ritual, <strong>free him quickly with Help</strong>; control/interrupt ritual progress and focus the boss. Avoid unintentionally killing Astarion or victims with indiscriminate AoE. Finish the vampire lord in his coffin as the scene requires.</li>
+<li class="task-item" id="task-C13"><input aria-label="Mark C13 checked" class="task-checkbox" data-task-id="C13" type="checkbox"/><strong>C13 — Choose Astarion’s future:</strong> allow/stop the Rite of Profane Ascension, and decide the spawn’s fate. <strong>Maximizing rescued people/character development</strong> favors stopping Ascension, then consciously resolving the released spawn; <strong>Ascension</strong> yields different powers and allies but kills ritual victims. Do not treat mutually exclusive endings as checklist failures.</li>
+<li class="task-item" id="task-C14"><input aria-label="Mark C14 checked" class="task-checkbox" data-task-id="C14" type="checkbox"/><strong>C14 — Loot Cazador’s treasures</strong> including <strong>Rhapsody</strong> and <strong>Woe</strong> where available. Revisit the Gur and Astarion at camp to resolve follow-up conversations and <strong>Gather Your Allies</strong>.</li>
+</ul>
+<h3 id="section-20">4C. Shadowheart and the House of Grief — active origin quest</h3>
+<p><strong>Party:</strong> <strong>Chad + Maurow + Shadowheart + Lae’zel</strong>. Shadowheart is a Trickery Cleric in this save; adjust spells before the fight.</p>
+<ul>
+<li class="task-item" id="task-C15"><input aria-label="Mark C15 checked" class="task-checkbox" data-task-id="C15" type="checkbox"/><strong>C15 — Find Sharran contacts and enter the House of Grief.</strong> Speak with the Inquirer of Grief, then bring Shadowheart into the cloister to meet <strong>Viconia DeVir</strong>. Do not surrender her without consciously choosing that exclusive branch.</li>
+<li class="task-item" id="task-C16"><input aria-label="Mark C16 checked" class="task-checkbox" data-task-id="C16" type="checkbox"/><strong>C16 — Fight or negotiate with Viconia’s Sharrans.</strong> The battle includes mass darkness/control; counter with positioning, area damage, summons and daylight-type solutions. Spare or kill Viconia consciously; inspect her notable gear.</li>
+<li class="task-item" id="task-C17"><input aria-label="Mark C17 checked" class="task-checkbox" data-task-id="C17" type="checkbox"/><strong>C17 — Explore Shadowheart’s family chamber.</strong> Let her confront <strong>Arnell and Emmeline</strong> and make the parents/curse decision. The optimal outcome is a story/roleplay decision, not a single objectively superior completion flag.</li>
+<li class="task-item" id="task-C18"><input aria-label="Mark C18 checked" class="task-checkbox" data-task-id="C18" type="checkbox"/><strong>C18 — Examine the <em>Mirror of Loss</em> and other hidden chambers/loot</strong> with appropriate preparation. Check character-specific prerequisites and the possibility of permanent ability improvement rather than assuming every character can gain it.</li>
+<li class="task-item" id="task-C19"><input aria-label="Mark C19 checked" class="task-checkbox" data-task-id="C19" type="checkbox"/><strong>C19 — Resolve Shadowheart’s camp and ally follow-ups</strong> and verify her companion quest ends in the intended state.</li>
+</ul>
+<h3 id="section-21">4D. Hag survivors, Ethel, and saving Vanra</h3>
+<p><strong>Party:</strong> Default or <strong>Jaheira + Gale</strong>. A different Act 1 outcome may remove or substantially change this quest; confirm <strong>Mayrina</strong> and <strong>Auntie Ethel</strong> branches in-game.</p>
+<ul>
+<li class="task-item" id="task-C20"><input aria-label="Mark C20 checked" class="task-checkbox" data-task-id="C20" type="checkbox"/><strong>C20 — Meet Lora</strong> near the Lower City/Basilisk Gate approach to start <strong>Save Vanra</strong>; make contact <strong>before</strong> solving the hag quest so you receive the proper reward flow.</li>
+<li class="task-item" id="task-C21"><input aria-label="Mark C21 checked" class="task-checkbox" data-task-id="C21" type="checkbox"/><strong>C21 — Find Old Garlow’s Place</strong> and meet the <strong>Hag Survivors</strong>. Unmask the hexed situation, help <strong>Mayrina</strong> if alive, and collect the <strong>Hag’s Bane</strong> recipe and <strong>Ashes of Dried Fey Flower</strong>.</li>
+<li class="task-item" id="task-C22"><input aria-label="Mark C22 checked" class="task-checkbox" data-task-id="C22" type="checkbox"/><strong>C22 — Craft Hag’s Bane immediately.</strong> It uses the unique ashes plus an <strong>Essence</strong>; the ashes are not reliably marked as a story item and can be consumed in other alchemy.</li>
+<li class="task-item" id="task-C23"><input aria-label="Mark C23 checked" class="task-checkbox" data-task-id="C23" type="checkbox"/><strong>C23 — Investigate the Blushing Mermaid and Captain Grisly</strong> for Ethel’s disguise, access the basement/lair and avoid killing the innocent masked victims if you can.</li>
+<li class="task-item" id="task-C24"><input aria-label="Mark C24 checked" class="task-checkbox" data-task-id="C24" type="checkbox"/><strong>C24 — During Ethel’s fight, save Vanra <em>before</em> killing Ethel.</strong> Throw <strong>Hag’s Bane</strong> at Ethel to make her disgorge Vanra; alternatively incapacitate Ethel using <strong>non-lethal melee</strong> and cut Vanra out. Destroy all <strong>three Pearlspore Bells</strong> so Ethel cannot regenerate. Finish the hag.</li>
+<li class="task-item" id="task-C25"><input aria-label="Mark C25 checked" class="task-checkbox" data-task-id="C25" type="checkbox"/><strong>C25 — Visit Lora and Vanra</strong> after the battle to claim <strong>Duellist’s Prerogative</strong> and <strong>Amulet of Windrider</strong> if conditions were met; report to surviving hag hunters and update allies.</li>
+</ul>
+<h3 id="section-22">4E. The artist, Mystic Carrion and other haunted houses</h3>
+<p><strong>Particularly relevant:</strong> <code>GLO_DoubtingArtist</code> is active in your save. Do <strong>not</strong> mark it complete because you rescued Oskar in Act 1.</p>
+<ul>
+<li class="task-item" id="task-C26"><input aria-label="Mark C26 checked" class="task-checkbox" data-task-id="C26" type="checkbox"/><strong>C26 — Go to Lady Jannath’s Estate</strong> in the western Lower City. Find <strong>Oskar Fevras</strong>, possessed inside a haunted house. Climb carefully through poltergeists and cursed skulls; avoid killing Oskar.</li>
+<li class="task-item" id="task-C27"><input aria-label="Mark C27 checked" class="task-checkbox" data-task-id="C27" type="checkbox"/><strong>C27 — Track the haunting’s origin</strong> by exploring the atelier, portraits and letters, then follow the lead to <strong>Mystic Carrion</strong> at <strong>Philgrave’s Mansion</strong>.</li>
+<li class="task-item" id="task-C28"><input aria-label="Mark C28 checked" class="task-checkbox" data-task-id="C28" type="checkbox"/><strong>C28 — Talk to Mystic Carrion and locate servant Thrumbo.</strong> For a liberation-oriented completion path, side with <strong>Thrumbo</strong> against Carrion, rather than surrendering him; explore the Undercity Ancient Lair and the mortuary for the jars.</li>
+<li class="task-item" id="task-C29"><input aria-label="Mark C29 checked" class="task-checkbox" data-task-id="C29" type="checkbox"/><strong>C29 — Destroy Carrion’s heart jar (extracted from Thrumbo once he knows the truth), and optionally the brain/liver/lungs jars</strong> to weaken Carrion. Destroy jars at a distance; they can explode. Then defeat Carrion permanently.</li>
+<li class="task-item" id="task-C30"><input aria-label="Mark C30 checked" class="task-checkbox" data-task-id="C30" type="checkbox"/><strong>C30 — Obtain the <em>Torch of Revocation</em></strong> from Carrion’s chest/reward and return to Jannath’s atelier. <strong>Equip and use it on the possessed portrait</strong>, free the spirit <strong>Kerri Evenfield</strong>, and resolve the artist’s marriage/ghost dilemma. Talk to Oskar/Jannath for follow-up reward.</li>
+<li class="task-item" id="task-C31"><input aria-label="Mark C31 checked" class="task-checkbox" data-task-id="C31" type="checkbox"/><strong>C31 — Loot Carrion’s signature gear</strong> where available: <strong>Staff of Cherished Necromancy</strong>, <strong>Hood of the Weave</strong>, <strong>Armour of the Sporekeeper</strong> and other treasures; talk to Thrumbo after the outcome.</li>
+</ul>
+<hr/>
+<h2 id="section-23">PHASE 5 — Optional high-stakes dungeons before the main villains</h2>
+<h3 id="section-24">5A. House of Hope: Orphic Hammer, Raphael, and the best monk gloves</h3>
+<p><strong>Party:</strong> <strong>Chad + Maurow + Gale + Lae’zel</strong>. This is a major level-11/12 encounter, especially with extra-enemy mods. Complete at a point when you can buy consumables and long rest freely. <strong>Save before entering and before taking the central Archive item.</strong></p>
+<ul>
+<li class="task-item" id="task-H01"><input aria-label="Mark H01 checked" class="task-checkbox" data-task-id="H01" type="checkbox"/><strong>H01 — Get into the House of Hope</strong> through <strong>Helsik’s Devil’s Fee</strong> (perform/acquire the ritual to open the portal). Before entry, secure fire resistance, healing, Counterspell, high-damage abilities and control. Talk to Helsik about the <strong>Orphic Hammer</strong>.</li>
+<li class="task-item" id="task-H02"><input aria-label="Mark H02 checked" class="task-checkbox" data-task-id="H02" type="checkbox"/><strong>H02 — Explore in disguise/under guidance from Hope.</strong> Read contracts, speak to the Archivist, learn how the House works and receive <strong>Hope’s request for rescue</strong>. Open accessible treasure rooms before setting off the alarm.</li>
+<li class="task-item" id="task-H03"><input aria-label="Mark H03 checked" class="task-checkbox" data-task-id="H03" type="checkbox"/><strong>H03 — Loot the Archive pedestals:</strong> <strong>Gauntlets of Hill Giant Strength</strong> (sets STR to 23), <strong>Amulet of Greater Health</strong> (sets CON to 23) and the central <strong>Orphic Hammer</strong> if you rejected Raphael, or <strong>Soul-Sworn Contract</strong> if you signed. Both side pedestals have traps/alarms; arrange escape plan first.</li>
+<li class="task-item" id="task-H04"><input aria-label="Mark H04 checked" class="task-checkbox" data-task-id="H04" type="checkbox"/><strong>H04 — Get the Archive passphrase</strong> via the Boudoir/story interactions and remove the shield on the Hammer/contract. Pick up <strong>Mol’s contract</strong> if her quest is available; record whether you intend to return it.</li>
+<li class="task-item" id="task-H05"><input aria-label="Mark H05 checked" class="task-checkbox" data-task-id="H05" type="checkbox"/><strong>H05 — Thoroughly loot House of Hope special gear</strong> such as the <strong>Helldusk Helmet</strong>, other hidden valuables and any loot from <strong>Haarlep</strong> (including <strong>Helldusk Gloves</strong> if you fight and defeat him). Do not assume mutually exclusive romance/combat paths can both occur.</li>
+<li class="task-item" id="task-H06"><input aria-label="Mark H06 checked" class="task-checkbox" data-task-id="H06" type="checkbox"/><strong>H06 — Free Hope.</strong> Equip the <strong>Orphic Hammer</strong>, go to her prison, survive Spectators/imps and break <strong>both binding crystals</strong> with <strong>Unshackling Strike</strong>. Hope becomes an attached follower; keep her alive.</li>
+<li class="task-item" id="task-H07"><input aria-label="Mark H07 checked" class="task-checkbox" data-task-id="H07" type="checkbox"/><strong>H07 — Beat Raphael in the entrance hall.</strong> Plan for <strong>Soul Pillars</strong>, Raphael’s magic and Yurgir’s involvement; <strong>Counterspell</strong>, focused pillar damage and control are valuable. Persuade Yurgir to help if the dialogue and prior-game state permit. Protect Hope throughout.</li>
+<li class="task-item" id="task-H08"><input aria-label="Mark H08 checked" class="task-checkbox" data-task-id="H08" type="checkbox"/><strong>H08 — Collect Raphael’s gear</strong> including <strong>Helldusk Armour</strong> and all appropriate boss loot; obtain <strong>Gloves of Soul Catching</strong> from surviving <strong>Hope</strong>. <strong>Maurow:</strong> these are an exceptional upgrade for an Open Hand Monk. Return safely to the Devil’s Fee.</li>
+<li class="task-item" id="task-H09"><input aria-label="Mark H09 checked" class="task-checkbox" data-task-id="H09" type="checkbox"/><strong>H09 — Return to Voss with the Orphic Hammer</strong> (if applicable), get <strong>Silver Sword of the Astral Plane</strong>, and progress <strong>Free Orpheus</strong>. <strong>Do not use the Hammer to make the final Orpheus choice until the final Astral Prism sequence.</strong></li>
+</ul>
+<h3 id="section-25">5B. Wyll’s Wyrmway and Ansur</h3>
+<p><strong>Party:</strong> <strong>Chad + Maurow + Wyll + Gale or Lae’zel</strong>. Wyll may receive his <strong>Legend of Ansur</strong> clue after the Duke rescue or through Florrick/Cordula Eltan depending on earlier choices. He is only Lv 4 in the save: <strong>level up at camp first</strong> or use Gale/Lae’zel for difficult fight if the companion dialogue is already complete.</p>
+<ul>
+<li class="task-item" id="task-H10"><input aria-label="Mark H10 checked" class="task-checkbox" data-task-id="H10" type="checkbox"/><strong>H10 — Read <em>The Legend of Ansur</em></strong> to initiate the <strong>Wyrmway</strong> quest (if not already obtained through the Duke/Florrick).</li>
+<li class="task-item" id="task-H11"><input aria-label="Mark H11 checked" class="task-checkbox" data-task-id="H11" type="checkbox"/><strong>H11 — Open the secret prison passage.</strong> In the western Wyrm’s Rock Prison corridor, hit <strong>both dragon-head sconces with lightning</strong>; their fire turns blue and exposes the illusory wall.</li>
+<li class="task-item" id="task-H12"><input aria-label="Mark H12 checked" class="task-checkbox" data-task-id="H12" type="checkbox"/><strong>H12 — Chamber of Justice:</strong> dispel the hostile <strong>Judge</strong> with <strong>Remove Curse</strong>/Banishment or another valid solution, review the paintings and place <strong>The Cell</strong> on the empty stand. The other verdict paintings are incorrect.</li>
+<li class="task-item" id="task-H13"><input aria-label="Mark H13 checked" class="task-checkbox" data-task-id="H13" type="checkbox"/><strong>H13 — Chamber of Insight:</strong> read/stop the flying books and identify the malicious adviser <strong>Cristina Suelto</strong>. Attack her ghost to pass; avoid killing innocent adviser ghosts.</li>
+<li class="task-item" id="task-H14"><input aria-label="Mark H14 checked" class="task-checkbox" data-task-id="H14" type="checkbox"/><strong>H14 — Chamber of Strategy:</strong> checkmate the black king in <strong>two moves</strong> on the generated lanceboard. <strong>Gale</strong> can offer the correct moves (even though he has been respecced to Sorcerer). Alternative: use <strong>lightning damage</strong> to destroy the black king piece.</li>
+<li class="task-item" id="task-H15"><input aria-label="Mark H15 checked" class="task-checkbox" data-task-id="H15" type="checkbox"/><strong>H15 — Chamber of Courage:</strong> defend the torch carrier for <strong>four turns</strong> against summoned elementals. Pick a character not dependent on their main weapon (Gale is suitable); do not down the torch carrier. <strong>Sanctuary</strong> or robust protection reduces risk.</li>
+<li class="task-item" id="task-H16"><input aria-label="Mark H16 checked" class="task-checkbox" data-task-id="H16" type="checkbox"/><strong>H16 — Enter Ansur’s sanctum.</strong> Read the environmental lore, then interact with the ancient dragon for the revelations and battle. Prepare lightning resistance, spread out before massive AoE, and kill the revived dragon.</li>
+<li class="task-item" id="task-H17"><input aria-label="Mark H17 checked" class="task-checkbox" data-task-id="H17" type="checkbox"/><strong>H17 — Loot <em>Balduran’s Giantslayer</em> and <em>Helm of Balduran</em></strong>; speak with Wyll and Duke Ravengard (if alive) to resolve Wyll’s future as Blade of Avernus versus political path. The Giantslayer is an excellent candidate for Chad <strong>if</strong> his current setup uses a two-handed weapon.</li>
+</ul>
+<h3 id="section-26">5C. Other high-value underground exploration</h3>
+<ul>
+<li class="task-item" id="task-H18"><input aria-label="Mark H18 checked" class="task-checkbox" data-task-id="H18" type="checkbox"/><strong>H18 — Explore the Lower City Sewers systematically.</strong> Find and clear the <strong>Guildhall</strong>, Undercity passages, traps, hidden merchants, abandoned cistern and any hidden cultists. Keep the Morphic Pool skiff for last.</li>
+<li class="task-item" id="task-H19"><input aria-label="Mark H19 checked" class="task-checkbox" data-task-id="H19" type="checkbox"/><strong>H19 — Inspect the Ancient Lair and Mortuary</strong> for Carrion’s jars and rare loot if you did not already in C28–C31.</li>
+<li class="task-item" id="task-H20"><input aria-label="Mark H20 checked" class="task-checkbox" data-task-id="H20" type="checkbox"/><strong>H20 — Explore <em>The House of Hope</em> and <em>Sorcerous Vault</em> special shelves again</strong> only if a needed item was missed; avoid re-triggering dangerous scenes for no reason.</li>
+<li class="task-item" id="task-H21"><input aria-label="Mark H21 checked" class="task-checkbox" data-task-id="H21" type="checkbox"/><strong>H21 — Check <em>Investigate the House of Grief</em>, <em>The High Harper</em>, <em>Investigate Cazador’s Palace</em>, <em>Find the Nightsong</em>, <em>The Wizard of Waterdeep</em></strong> for story follow-ups, not just boss completions. Several ally registrations happen after dialogue/long rest.</li>
+</ul>
+<hr/>
+<h2 id="section-27">PHASE 6 — Iron Throne → Steel Watch Foundry → Gortash</h2>
+<p><strong>Order is mandatory for the fullest rescue route.</strong> Take plenty of mobility and healing consumables; mods may change encounter counts or timing. The save currently has <code>PLA_GrandDukeRescue</code> and <code>WYR_GetGortashGem</code> active.</p>
+<h3 id="section-28">6A. The Iron Throne: rescue the hostages before sabotage</h3>
+<p><strong>Party:</strong> <strong>Chad + Maurow + Gale + Lae’zel</strong>, or replace Lae’zel with <strong>Wyll</strong> for father/son significance. Ensure <strong>Gale</strong> has <strong>Haste</strong>, <strong>Misty Step</strong> or comparable mobility, <strong>Counterspell</strong> and possibly <strong>Dimension Door</strong> or scrolls. Maurow’s Step of the Wind makes him particularly good at traversing distant cell blocks.</p>
+<ul>
+<li class="task-item" id="task-G01"><input aria-label="Mark G01 checked" class="task-checkbox" data-task-id="G01" type="checkbox"/><strong>G01 — Verify Wyll’s Mizora scene is complete and Gortash’s coronation was attended.</strong> Otherwise Duke Ravengard can end up in an unexpected/dead state. Record Wyll’s pact choice, then inspect your journal for Duke clues.</li>
+<li class="task-item" id="task-G02"><input aria-label="Mark G02 checked" class="task-checkbox" data-task-id="G02" type="checkbox"/><strong>G02 — Begin <em>Avenge the Drowned</em></strong> at the <strong>Water Queen’s House</strong> if available. Speak with Allandra Grey about the drowned servant and track the submersible operator. This quest crosses directly with Iron Throne access; do it before the rescue for full dialogue.</li>
+<li class="task-item" id="task-G03"><input aria-label="Mark G03 checked" class="task-checkbox" data-task-id="G03" type="checkbox"/><strong>G03 — Explore Flymm Cargo</strong> at the docks. Defeat/avoid the warehouse guards, find the hidden submarine dock and meet <strong>Redhammer</strong>. Learn about <strong>Iron Throne</strong> and its captives. Negotiate to reach the prison, rather than killing him before hearing the story.</li>
+<li class="task-item" id="task-G04"><input aria-label="Mark G04 checked" class="task-checkbox" data-task-id="G04" type="checkbox"/><strong>G04 — Make a dedicated hard save before taking the submarine.</strong> The mission becomes a timed extraction after arrival. On the medium/default ruleset the vanilla Iron Throne gives <strong>six turns</strong> (modded difficulty can change this). Gortash threatens the prison; proceed with rescue if this is your intended branch.</li>
+<li class="task-item" id="task-G05"><input aria-label="Mark G05 checked" class="task-checkbox" data-task-id="G05" type="checkbox"/><strong>G05 — Split the party into rescue lanes immediately.</strong> <strong>Maurow:</strong> sprint/Step of the Wind to far cages and open levers. <strong>Chad:</strong> fight/block Sahuagin and open another wing. <strong>Gale:</strong> Haste/teleport, emergency prisoner movement and crowd control. <strong>Lae’zel/Wyll:</strong> rescue Duke/nearby hostages and help secure the ladder. Interact with each cell <strong>lever</strong>; it usually saves more actions than killing everything.</li>
+<li class="task-item" id="task-G06"><input aria-label="Mark G06 checked" class="task-checkbox" data-task-id="G06" type="checkbox"/><strong>G06 — Rescue Duke Ulder Ravengard.</strong> If Wyll broke his pact, watch for <strong>Mizora’s intervention/spiders</strong> and immediately heal or protect the Duke. Get him to the ladder/submersible alive before the timer expires.</li>
+<li class="task-item" id="task-G07"><input aria-label="Mark G07 checked" class="task-checkbox" data-task-id="G07" type="checkbox"/><strong>G07 — Free all available Gondian prisoners, particularly Obelia Toobin</strong> (Zanner’s daughter), because their survival affects the Foundry rebellion. A perfect rescue may need a rehearsed route and a reload; do not waste turns opening loot containers.</li>
+<li class="task-item" id="task-G08"><input aria-label="Mark G08 checked" class="task-checkbox" data-task-id="G08" type="checkbox"/><strong>G08 — Rescue Omeluum if present.</strong> It is held in a southwest separate room. <strong>Teleport to Submersible</strong> can take Omeluum <strong>and one ally</strong> back, making a distant rescue viable. Its presence depends on earlier-game events.</li>
+<li class="task-item" id="task-G09"><input aria-label="Mark G09 checked" class="task-checkbox" data-task-id="G09" type="checkbox"/><strong>G09 — Board the submarine with as many rescued NPCs as possible</strong> before the last turn; check the party and prisoner counts in the mission summary. Back on land, resolve Redhammer versus the <strong>Waveservants</strong> in <strong>Avenge the Drowned</strong> as consciously chosen (the <strong>Wavemother’s Robe</strong> is linked to their side of the conflict).</li>
+<li class="task-item" id="task-G10"><input aria-label="Mark G10 checked" class="task-checkbox" data-task-id="G10" type="checkbox"/><strong>G10 — Talk to Duke Ravengard, Wyll, Mizora and rescued NPCs</strong> at camp/appropriate locations. Confirm <strong>Rescue the Grand Duke</strong>, <strong>Retrieve Omeluum</strong> and the hostage aspect of <strong>Save the Gondians</strong> where available.</li>
+</ul>
+<h3 id="section-29">6B. Steel Watch Foundry: save the workers, then destroy production</h3>
+<p><strong>Party:</strong> Default; if a story companion is desired, bring Wyll or Karlach only after raising levels. <strong>Be alert for Banite Motivators</strong>: deactivate them fast or the collared Gondians die.</p>
+<ul>
+<li class="task-item" id="task-G11"><input aria-label="Mark G11 checked" class="task-checkbox" data-task-id="G11" type="checkbox"/><strong>G11 — Enter the Steel Watch Foundry</strong> in the Grey Harbour / southwest Lower City. Talk to <strong>Zanner Toobin</strong>; with his daughter rescued he can help dismantle the operation. <strong>If you accidentally killed Gortash first, these interactions may be gone</strong>.</li>
+<li class="task-item" id="task-G12"><input aria-label="Mark G12 checked" class="task-checkbox" data-task-id="G12" type="checkbox"/><strong>G12 — Save Gondians on the production floor.</strong> Defeat Banites while keeping workers alive and deactivate dropped <strong>Motivators</strong> immediately. Watch AoE targeting around Gondian allies.</li>
+<li class="task-item" id="task-G13"><input aria-label="Mark G13 checked" class="task-checkbox" data-task-id="G13" type="checkbox"/><strong>G13 — Search the Lab Level</strong> for documents explaining the prison link, and rescue the Gondian workers from the wardens and Steel Watchers. Use heal, invisibility, crowd control and focus fire to avoid unnecessary friendly casualties.</li>
+<li class="task-item" id="task-G14"><input aria-label="Mark G14 checked" class="task-checkbox" data-task-id="G14" type="checkbox"/><strong>G14 — Descend to the Control Centre</strong> with Zanner (or the relevant code/runepowder alternative) and defeat the <strong>Steel Watch Titan</strong> and guards, unless you intentionally take a bypass. Inspect the Titan for <strong>Gontr Mael</strong> if the boss is defeated and lootable.</li>
+<li class="task-item" id="task-G15"><input aria-label="Mark G15 checked" class="task-checkbox" data-task-id="G15" type="checkbox"/><strong>G15 — Destroy the Foundry only after the above rescues</strong> and speak to Gondians / Ironhand gnomes. Resolve <strong>Barcus versus Wulbren</strong> (if both available) and their possible final allies. For a rescue-oriented completion, protect surviving Gondians from an Ironhand execution attempt.</li>
+<li class="task-item" id="task-G16"><input aria-label="Mark G16 checked" class="task-checkbox" data-task-id="G16" type="checkbox"/><strong>G16 — Record <em>Avenge the Ironhands</em>, <em>Save the Gondians</em>, <em>Disable the Steel Watch</em> outcomes</strong> and relevant allies before the main Gortash fight.</li>
+</ul>
+<h3 id="section-30">6C. Gortash: after the hostages and Foundry</h3>
+<p><strong>Party:</strong> <strong>Chad + Maurow + Karlach + Gale</strong> for narrative, or <strong>Gale + Lae’zel</strong> for the default strongest frontline. <strong>Karlach is Lv 4 in this save; level her up before using her</strong>.</p>
+<ul>
+<li class="task-item" id="task-G17"><input aria-label="Mark G17 checked" class="task-checkbox" data-task-id="G17" type="checkbox"/><strong>G17 — Return to Wyrm’s Rock after disabling the Steel Watch.</strong> Expect hostile security and remaining traps. Work through the fortress methodically and clear dangerous mechanisms where possible.</li>
+<li class="task-item" id="task-G18"><input aria-label="Mark G18 checked" class="task-checkbox" data-task-id="G18" type="checkbox"/><strong>G18 — Confront and defeat Enver Gortash.</strong> Use <strong>Counterspell</strong>, disables, throws/positioning, and concentrate fire on the boss while respecting trap/environmental hazards. Loot the <strong>Netherstone</strong> and all unique items.</li>
+<li class="task-item" id="task-G19"><input aria-label="Mark G19 checked" class="task-checkbox" data-task-id="G19" type="checkbox"/><strong>G19 — Bring Karlach for the immediate post-Gortash scene and follow-up.</strong> Her personal resolution is worth the swap even if you used the default party to defeat Gortash; check the journal, camp and Dammon if applicable.</li>
+<li class="task-item" id="task-G20"><input aria-label="Mark G20 checked" class="task-checkbox" data-task-id="G20" type="checkbox"/><strong>G20 — Resolve Wyll/Duke aftermath</strong> and check for reactions from other allies, including Florrick. Verify no unfinished Gortash-related quest remains that is still achievable.</li>
+</ul>
+<hr/>
+<h2 id="section-31">PHASE 7 — Murder Tribunal, Orin, and the Undercity</h2>
+<p><strong>Party:</strong> Default <strong>Chad + Maurow + Gale + Lae’zel</strong> unless a kidnapping removed one; <strong>Minthara</strong> adds optional personal relevance to Orin if available/leveled. Both of your avatars keep their slots regardless.</p>
+<h3 id="section-32">7A. Entering Bhaal’s domain</h3>
+<ul>
+<li class="task-item" id="task-O01"><input aria-label="Mark O01 checked" class="task-checkbox" data-task-id="O01" type="checkbox"/><strong>O01 — Review the murder chain and Dolor clues.</strong> Complete Open Hand evidence, Valeria/Devella reports, Cora/Figaro rescues, and obtain the <strong>“Sicarius”</strong> password/hand evidence leading to <strong>Candulhallow’s Tombstones</strong>.</li>
+<li class="task-item" id="task-O02"><input aria-label="Mark O02 checked" class="task-checkbox" data-task-id="O02" type="checkbox"/><strong>O02 — Enter Candulhallow’s Tombstones’ hidden passage</strong> using the passphrase; investigate the <strong>Murder Tribunal</strong>. Read correspondence and loot accessible side chambers for Bhaal lore.</li>
+<li class="task-item" id="task-O03"><input aria-label="Mark O03 checked" class="task-checkbox" data-task-id="O03" type="checkbox"/><strong>O03 — Confront Sarevok Anchev.</strong> For the “save everyone reasonably possible” version, refuse to murder investigator <strong>Valeria</strong> for Bhaal’s initiation and defeat Sarevok. <strong>Becoming an Unholy Assassin</strong> and sparing Valeria are incompatible choices. Acquire <strong>Sarevok’s Amulet</strong> / tribunal access and the boss loot.</li>
+<li class="task-item" id="task-O04"><input aria-label="Mark O04 checked" class="task-checkbox" data-task-id="O04" type="checkbox"/><strong>O04 — Free Valeria</strong> and verify she is registered (if eligible) as a final ally. Finish <strong>Investigate the Murders</strong> / Tribunal updates in the journal.</li>
+<li class="task-item" id="task-O05"><input aria-label="Mark O05 checked" class="task-checkbox" data-task-id="O05" type="checkbox"/><strong>O05 — Enter the Undercity Ruins</strong> via the Lower City Sewers; collect the <strong>Undercity Ruins waypoint</strong>. Use the acquired amulet to pass Bhaal’s main doors where appropriate.</li>
+<li class="task-item" id="task-O06"><input aria-label="Mark O06 checked" class="task-checkbox" data-task-id="O06" type="checkbox"/><strong>O06 — Traverse the Farslayer ambush safely.</strong> In the initial Undercity passage, a <strong>Bhaalist Farslayer</strong> can trigger a deadly chanting/ritual encounter. Rapidly reach and defeat the ritual leader with mobility, ranged damage, teleport or control rather than fighting each expendable cultist first.</li>
+<li class="task-item" id="task-O07"><input aria-label="Mark O07 checked" class="task-checkbox" data-task-id="O07" type="checkbox"/><strong>O07 — Collect Dribbles’ head</strong> on <strong>Wilting Alex’s corpse</strong> near the Undercity/Temple of Bhaal approach. This is the <strong>seventh</strong> piece if all six others have been found; see the separate Dribbles ledger below.</li>
+</ul>
+<h3 id="section-33">7B. Orin: her victim and Netherstone</h3>
+<ul>
+<li class="task-item" id="task-O08"><input aria-label="Mark O08 checked" class="task-checkbox" data-task-id="O08" type="checkbox"/><strong>O08 — Identify Orin’s actual kidnapped victim</strong> from the journal/camp/sewer scene. Her priority is <strong>Lae’zel, Halsin, Gale, Minthara, then Yenna</strong> among valid targets. If <strong>Lae’zel and Gale</strong> were always active, <strong>Halsin</strong> is the likely hostage. <strong>CHECK IN GAME:</strong> the save extract does not identify the victim.</li>
+<li class="task-item" id="task-O09"><input aria-label="Mark O09 checked" class="task-checkbox" data-task-id="O09" type="checkbox"/><strong>O09 — Before confronting Orin, save and prepare a hostage-rescue plan.</strong> Do not attack the restrained hostage or accidentally leave them behind after victory. Approach dialogue deliberately; the hostage survives the long-rest delay but may die if you mishandle the direct confrontation.</li>
+<li class="task-item" id="task-O10"><input aria-label="Mark O10 checked" class="task-checkbox" data-task-id="O10" type="checkbox"/><strong>O10 — Defeat Orin the Red in the Temple of Bhaal.</strong> Expect Bhaalist support, Unstoppable-type defenses and a lethal melee boss. Use <strong>Chad’s Black Hole</strong> (shown in save ability list) or other area displacement/control to pull enemies together; <strong>Maurow’s Stunning Strike</strong> can help if allowed by encounter mechanics. Multi-hit effects, Magic Missile and area attacks can break protective stacks; mods may change exact strengths.</li>
+<li class="task-item" id="task-O11"><input aria-label="Mark O11 checked" class="task-checkbox" data-task-id="O11" type="checkbox"/><strong>O11 — Free the hostage directly at the altar</strong> before leaving the temple; confirm they rejoin camp/alive. <strong>IMPORTANT:</strong> leaving the Bhaal Temple with a victim still chained to the altar can kill them even after Orin is defeated.</li>
+<li class="task-item" id="task-O12"><input aria-label="Mark O12 checked" class="task-checkbox" data-task-id="O12" type="checkbox"/><strong>O12 — Loot Orin’s Netherstone, Bloodthirst and Crimson Mischief</strong> where available; gather all special journal correspondence and temple treasure. Return to camp to conclude companion reactions.</li>
+<li class="task-item" id="task-O13"><input aria-label="Mark O13 checked" class="task-checkbox" data-task-id="O13" type="checkbox"/><strong>O13 — Check <code>LOW_FindBhaalTemple</code> and broader brain objectives</strong> against the current journal. If you now hold both Orin and Gortash’s stones as well as Ketheric’s, the path toward the Morphic Pool is available — <strong>do not take it yet</strong>.</li>
+</ul>
+<hr/>
+<h2 id="section-34">PHASE 8 — Full Dribbles ledger and final city audit</h2>
+<p>The seven pieces are scattered in the same areas already used for other quests. Don't dedicate a whole night to random searching; collect them alongside the relevant work.</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Body part</th>
+<th>Location / what to inspect</th>
+<th>First recommended phase</th>
+</tr>
+</thead>
+<tbody>
+<tr class="piece-item" id="task-D01">
+<td><input aria-label="Found Dribbles hand" class="task-checkbox" data-task-id="D01" type="checkbox"/></td>
+<td><strong>Hand</strong></td>
+<td><strong>Popper’s circus stall</strong>, Rivington</td>
+<td>R09</td>
+</tr>
+<tr class="piece-item" id="task-D02">
+<td><input aria-label="Found Dribbles torso" class="task-checkbox" data-task-id="D02" type="checkbox"/></td>
+<td><strong>Torso</strong></td>
+<td>Corpse in the cave beneath <strong>Open Hand Temple</strong>, by murder investigation</td>
+<td>R14</td>
+</tr>
+<tr class="piece-item" id="task-D03">
+<td><input aria-label="Found Dribbles pelvis" class="task-checkbox" data-task-id="D03" type="checkbox"/></td>
+<td><strong>Pelvis</strong></td>
+<td><strong>Empty house behind Stormshore Tabernacle</strong>, Lower City</td>
+<td>L25</td>
+</tr>
+<tr class="piece-item" id="task-D04">
+<td><input aria-label="Found Dribbles arm" class="task-checkbox" data-task-id="D04" type="checkbox"/></td>
+<td><strong>Arm</strong></td>
+<td><strong>Peartree House basement</strong>, under a movable chest / hidden hatch</td>
+<td>L25</td>
+</tr>
+<tr class="piece-item" id="task-D05">
+<td><input aria-label="Found Dribbles leg" class="task-checkbox" data-task-id="D05" type="checkbox"/></td>
+<td><strong>Leg</strong></td>
+<td><strong>Lavernica’s Home basement</strong>, near Crimson Draughts</td>
+<td>L25</td>
+</tr>
+<tr class="piece-item" id="task-D06">
+<td><input aria-label="Found Dribbles foot" class="task-checkbox" data-task-id="D06" type="checkbox"/></td>
+<td><strong>Foot</strong></td>
+<td><strong>Rainforest’s Home basement</strong>, near Beehive General Goods</td>
+<td>L25</td>
+</tr>
+<tr class="piece-item" id="task-D07">
+<td><input aria-label="Found Dribbles head" class="task-checkbox" data-task-id="D07" type="checkbox"/></td>
+<td><strong>Head</strong></td>
+<td><strong>Wilting Alex’s corpse</strong>, Undercity Ruins approaching Bhaal’s Temple</td>
+<td>O07</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li class="task-item" id="task-F01"><input aria-label="Mark F01 checked" class="task-checkbox" data-task-id="F01" type="checkbox"/><strong>F01 — Put all seven parts in party inventory and return them to Lucretious.</strong> Obtain <strong>Spellmight Gloves</strong>, then revisit circus merchants <strong>before</strong> the next long rest makes them leave. Consider these gloves on Gale for Scorching Ray or other spell attacks when his accuracy supports the -5 spell attack tradeoff.</li>
+<li class="task-item" id="task-F02"><input aria-label="Mark F02 checked" class="task-checkbox" data-task-id="F02" type="checkbox"/><strong>F02 — Finish <em>Help the Devilish Ox</em>, <em>Find the Missing Letters</em>, <em>Investigate the Suspicious Toys</em>, <em>Solve the Open Hand Temple Murders</em> and <em>Help the Cursed Monk</em></strong> if they still remain open and are accessible.</li>
+<li class="task-item" id="task-F03"><input aria-label="Mark F03 checked" class="task-checkbox" data-task-id="F03" type="checkbox"/><strong>F03 — Finish <em>Free the Artist</em>, <em>Find Mystic Carrion’s Servant</em>, <em>Defeat Mystic Carrion</em>, <em>Help the Hag Survivors</em> and <em>Save Vanra</em></strong> if applicable to your Act 1 choices.</li>
+<li class="task-item" id="task-F04"><input aria-label="Mark F04 checked" class="task-checkbox" data-task-id="F04" type="checkbox"/><strong>F04 — Finish <em>Aid the Underduke</em>, <em>Return Rakath’s Gold</em>, <em>Find Mol</em>, <em>Stop the Presses</em>, <em>Roveer’s Storehouse</em> and <em>Avenge the Drowned</em></strong> as applicable.</li>
+<li class="task-item" id="task-F05"><input aria-label="Mark F05 checked" class="task-checkbox" data-task-id="F05" type="checkbox"/><strong>F05 — Check all origin quests:</strong> <strong>Gale</strong> (Annals/Mystra); <strong>Lae’zel</strong> (Voss, Hammer/Orpheus); <strong>Astarion</strong> (Cazador/spawn); <strong>Shadowheart</strong> (House of Grief/parents); <strong>Wyll</strong> (Duke/Ansur/future); <strong>Karlach</strong> (Gortash/engine); <strong>Jaheira/Minsc</strong>; optional Halsin and Minthara follow-ups.</li>
+<li class="task-item" id="task-F06"><input aria-label="Mark F06 checked" class="task-checkbox" data-task-id="F06" type="checkbox"/><strong>F06 — Confirm that the Grey Harbour / Steel Watch, Wyrm’s Rock Prison, Cazador Palace, House of Grief, Sorcerous Sundries Vault, Ramazith’s Tower, Devil’s Fee, House of Hope, Wyrmway, Guildhall and Undercity Ruins</strong> were searched for unique loot and story scenes.</li>
+<li class="task-item" id="task-F07"><input aria-label="Mark F07 checked" class="task-checkbox" data-task-id="F07" type="checkbox"/><strong>F07 — Complete the <em>Gather Your Allies</em> audit</strong> using the ally matrix below; return to any surviving contact whose help is not yet registered.</li>
+<li class="task-item" id="task-F08"><input aria-label="Mark F08 checked" class="task-checkbox" data-task-id="F08" type="checkbox"/><strong>F08 — Take a separate “pre-Morphic-Pool” manual save and update player notes</strong> before ending Act 3. Preserve this as your branch point to see alternate finales without replaying dozens of hours.</li>
+</ul>
+<hr/>
+<h2 id="section-35">PHASE 9 — Netherbrain finale (only when everything above is settled)</h2>
+<p><strong>Save before using the Morphic Pool skiff.</strong> Chad and Maurow still take slots 1 and 2. With only <strong>two companion slots</strong>, the full range of companion-specific finales <strong>cannot all be present in the same final party</strong>. Choose based on the ending you want; you can revisit the manual save to see alternatives.</p>
+<table>
+<thead>
+<tr>
+<th>Final two companions</th>
+<th>Why choose them</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Gale + Lae’zel</strong> (default recommended)</td>
+<td>Brings Gale’s Crown/Netherese Orb storyline and Lae’zel’s Orpheus/Vlaakith storyline into the climactic sequence; strong battle composition</td>
+</tr>
+<tr>
+<td><strong>Karlach + Lae’zel</strong></td>
+<td>Brings Karlach into the final choice, including her potential illithid path, while retaining Lae’zel’s Orpheus interest</td>
+</tr>
+<tr>
+<td><strong>Karlach + Gale</strong></td>
+<td>Focus on Karlach and Gale’s personal endgame possibilities, without Lae’zel’s firsthand reactions</td>
+</tr>
+<tr>
+<td><strong>Wyll + Karlach</strong></td>
+<td>Thematically focuses on their shared infernal future, but sacrifices Gale/Lae’zel combat/story presence</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li class="task-item" id="task-E01"><input aria-label="Mark E01 checked" class="task-checkbox" data-task-id="E01" type="checkbox"/><strong>E01 — Final equipment, camp and companion audit.</strong> Empty camp chest of needed gear, buy consumables, select the final two companions and resolve level-ups/respecs. A visit to Withers and a long rest may be appropriate <em>before</em> boarding the skiff.</li>
+<li class="task-item" id="task-E02"><input aria-label="Mark E02 checked" class="task-checkbox" data-task-id="E02" type="checkbox"/><strong>E02 — Confirm at least the three Netherstones are accounted for</strong> and decide whether to pursue <strong>Free Orpheus</strong>. If freeing him, <strong>bring the Orphic Hammer</strong>. Raphael’s fate/deal status matters if the Hammer was never stolen.</li>
+<li class="task-item" id="task-E03"><input aria-label="Mark E03 checked" class="task-checkbox" data-task-id="E03" type="checkbox"/><strong>E03 — Board the Morphic Pool skiff</strong> in the northern Undercity Ruins <strong>only now</strong>. The game locks you out of prior areas, camp swaps and unresolved quests.</li>
+<li class="task-item" id="task-E04"><input aria-label="Mark E04 checked" class="task-checkbox" data-task-id="E04" type="checkbox"/><strong>E04 — Face the initial Netherbrain confrontation</strong> and the resulting <strong>Astral Prism</strong> dilemma. Choose deliberately between trusting the Emperor and freeing Orpheus; their alliance paths are exclusive. Decide who, if anyone, must become a mind flayer. Karlach’s option requires her to be available for the relevant final dialogue.</li>
+<li class="task-item" id="task-E05"><input aria-label="Mark E05 checked" class="task-checkbox" data-task-id="E05" type="checkbox"/><strong>E05 — Reach the Upper City / High Hall</strong>, fight through invasion and use any available <strong>Gather Your Allies</strong> summons strategically. Protect your active four while conserving high-level abilities for the last sequence.</li>
+<li class="task-item" id="task-E06"><input aria-label="Mark E06 checked" class="task-checkbox" data-task-id="E06" type="checkbox"/><strong>E06 — Atop the Netherbrain</strong>, clear a route to the crown and execute the appropriate control/portal action. Keep survivability high during platform/turn-limited mechanics; multiple allies are expendable, your player characters are not.</li>
+<li class="task-item" id="task-E07"><input aria-label="Mark E07 checked" class="task-checkbox" data-task-id="E07" type="checkbox"/><strong>E07 — Choose destroy or dominate the Netherbrain</strong> and resolve each active companion epilogue. The save contains both <code>GLO_DealWithTheBrain_SUB_Destroy</code> and <code>_Dominate</code> as active paths; this is <em>not</em> proof that both outcomes can happen.</li>
+<li class="task-item" id="task-E08"><input aria-label="Mark E08 checked" class="task-checkbox" data-task-id="E08" type="checkbox"/><strong>E08 — Complete epilogue camp/dialogue scenes</strong> and record your ending choices, including the paths of Gale, Lae’zel/Orpheus, Karlach/Wyll, Astarion, Shadowheart, Minthara and all surviving friends.</li>
+</ul>
+<hr/>
+<h2 id="section-36">Gather Your Allies — conditional, non-exhaustive matrix</h2>
+<p><strong>These are possibilities, not confirmed allies in the save.</strong> They depend on prior decisions and surviving NPCs. Some entries are <strong>mutually exclusive</strong>, and not every possible ally has a summon button.</p>
+<table>
+<thead>
+<tr>
+<th>Ally / faction</th>
+<th>What unlocks them or the relevant branch</th>
+<th>Do they conflict?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Counsellor Florrick</strong></td>
+<td>Free her from Wyrm’s Rock before execution</td>
+<td>Can be lost to the timer</td>
+</tr>
+<tr>
+<td><strong>Duke Ulder Ravengard</strong></td>
+<td>Rescue him from the Iron Throne</td>
+<td>Lost if the prison is destroyed with him inside</td>
+</tr>
+<tr>
+<td><strong>Jaheira / Harpers</strong></td>
+<td>Recruit and save Minsc; preserve Jaheira</td>
+<td>Minsc death can lose both</td>
+</tr>
+<tr>
+<td><strong>Aylin and Isobel</strong></td>
+<td>Earlier survival; defend Aylin from Lorroakan</td>
+<td>Opposes handing Aylin to Lorroakan</td>
+</tr>
+<tr>
+<td><strong>Rolan</strong></td>
+<td>Save him/siblings as feasible; resolve Lorroakan in his favor</td>
+<td>Conflicts with Lorroakan’s branch</td>
+</tr>
+<tr>
+<td><strong>Astarion / vampire spawn</strong></td>
+<td>Complete Cazador ritual via <strong>Ascension</strong></td>
+<td>Opposes <strong>Ulma and Gur</strong> outcome</td>
+</tr>
+<tr>
+<td><strong>Ulma and the Gur</strong></td>
+<td>Stop Ascension and resolve spawn/Gur appropriately</td>
+<td>Opposes Ascended Astarion’s servants</td>
+</tr>
+<tr>
+<td><strong>Nine-Fingers’ Guild</strong></td>
+<td>Support the Guild in <em>Aid the Underduke</em></td>
+<td>Conflicts with <strong>Zhentarim</strong></td>
+</tr>
+<tr>
+<td><strong>Zhentarim</strong></td>
+<td>Support Zhentarim takeover</td>
+<td>Conflicts with Guild</td>
+</tr>
+<tr>
+<td><strong>Gondians / Steel Watcher</strong></td>
+<td>Rescue Gondians and resolve Foundry/faction conflict favorably</td>
+<td>Can conflict with Ironhands route</td>
+</tr>
+<tr>
+<td><strong>Barcus / Ironhand Gnomes</strong></td>
+<td>Protect Barcus and change gnome leadership if possible</td>
+<td>Conflicts with Wulbren leadership</td>
+</tr>
+<tr>
+<td><strong>Wulbren / Ironhand Gnomes</strong></td>
+<td>Keep Wulbren as Ironhand leader</td>
+<td>Conflicts with Barcus leadership</td>
+</tr>
+<tr>
+<td><strong>Strange Ox</strong></td>
+<td>Smuggle Strange Apple to Lower City</td>
+<td>Killed Ox cannot assist</td>
+</tr>
+<tr>
+<td><strong>Mol</strong></td>
+<td>Return contract from House of Hope if relevant</td>
+<td>May depend on earlier tiefling fate</td>
+</tr>
+<tr>
+<td><strong>Volo</strong></td>
+<td>Rescue from explosive mob near Foundry</td>
+<td>Can die if event mishandled</td>
+</tr>
+<tr>
+<td><strong>Kith’rak Voss</strong></td>
+<td>Complete Hammer/Orpheus conversation where eligible</td>
+<td>Depends on Voss and final choices</td>
+</tr>
+<tr>
+<td><strong>Yurgir</strong></td>
+<td>Secure his cooperation in Raphael storyline</td>
+<td>Depends on previous story and Raphael encounter</td>
+</tr>
+<tr>
+<td><strong>Mizora</strong></td>
+<td>Relevant Wyll contract/Mizora conversations</td>
+<td>Not guaranteed after ending pact</td>
+</tr>
+<tr>
+<td><strong>Valeria / City Watch</strong></td>
+<td>Rescue Valeria from Murder Tribunal</td>
+<td>Opposes sacrificing her to Bhaal</td>
+</tr>
+<tr>
+<td><strong>Dammon</strong></td>
+<td>Earlier survival and Karlach-related continuity</td>
+<td>Conditional on previous acts</td>
+</tr>
+<tr>
+<td><strong>Hag support</strong></td>
+<td>Siding with Ethel (rather than rescuing Vanra)</td>
+<td>Opposes hag-survivor rescue route</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Recommended campaign ethos if you want the largest rescue count:</strong> spare civilians, save the Duke/Gondians/hostage, recruit Minsc, oppose Cazador’s sacrifice, save Vanra, free Hope, back Aylin, and support one living Guild/Ironhand leadership path. This does <strong>not</strong> maximize every possible faction power/achievement; no single save can.</p>
+<h2 id="section-37">Particularly relevant Act 3 equipment for your <em>actual</em> builds</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Where / when</th>
+<th>Best fit in this campaign</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Gloves of Soul Catching</strong></td>
+<td>Keep <strong>Hope</strong> alive through House of Hope/Raphael</td>
+<td><strong>Maurow:</strong> huge bonus to unarmed monk damage and survival</td>
+</tr>
+<tr>
+<td><strong>Nyrulna</strong></td>
+<td>Akabi jungle painted chest</td>
+<td><strong>Chad:</strong> great for throw/Berserker play if his combat style uses returning weapons</td>
+</tr>
+<tr>
+<td><strong>Balduran’s Giantslayer</strong></td>
+<td>Ansur</td>
+<td><strong>Chad</strong> if two-handed melee build; strong alternative for Lae’zel</td>
+</tr>
+<tr>
+<td><strong>Helm of Balduran</strong></td>
+<td>Ansur’s lair altar</td>
+<td><strong>Chad/Lae’zel</strong> frontliner survivability</td>
+</tr>
+<tr>
+<td><strong>Markoheshkir</strong></td>
+<td>Ramazith’s Tower</td>
+<td><strong>Gale:</strong> lightning-oriented Storm Sorcerer</td>
+</tr>
+<tr>
+<td><strong>Robe of the Weave</strong></td>
+<td>Ramazith’s Tower</td>
+<td><strong>Gale</strong> or caster companion for spell potency</td>
+</tr>
+<tr>
+<td><strong>Spellmight Gloves</strong></td>
+<td>Deliver all Dribbles parts</td>
+<td><strong>Gale</strong> for reliable spell attack rolls (especially Scorching Ray)</td>
+</tr>
+<tr>
+<td><strong>Amulet of Greater Health</strong></td>
+<td>House of Hope Archive</td>
+<td><strong>Chad / Gale / Lae’zel</strong> according to concentration/survival needs</td>
+</tr>
+<tr>
+<td><strong>Gauntlets of Hill Giant Strength</strong></td>
+<td>House of Hope Archive</td>
+<td>Strength-dependent fighter or paladin; <strong>not</strong> automatically best on Maurow if it displaces Soul Catching gloves</td>
+</tr>
+<tr>
+<td><strong>Gontr Mael</strong></td>
+<td>Steel Watch Titan</td>
+<td>Excellent high-tier bow for an interested ranged build; check modded loadouts</td>
+</tr>
+<tr>
+<td><strong>Duellist’s Prerogative</strong></td>
+<td>Save Vanra and visit Lora</td>
+<td>One-handed finesse specialist, not necessarily your default fighters</td>
+</tr>
+<tr>
+<td><strong>Rhapsody / Woe</strong></td>
+<td>Cazador outcome</td>
+<td>Astarion or caster depending on build and reward availability</td>
+</tr>
+<tr>
+<td><strong>Crimson Mischief / Bloodthirst</strong></td>
+<td>Orin</td>
+<td>Finesse dual-wield / crit-oriented characters, as applicable</td>
+</tr>
+<tr>
+<td><strong>Helldusk Armour</strong></td>
+<td>Raphael</td>
+<td>Heavy armor power option for a frontline character</td>
+</tr>
+<tr>
+<td><strong>Hood of the Weave</strong></td>
+<td>Mystic Carrion</td>
+<td><strong>Gale</strong> or caster companion</td>
+</tr>
+<tr>
+<td><strong>Danse Macabre</strong></td>
+<td>Tharchiate Codex + Necromancy of Thay</td>
+<td>Depends on <em>who read the book</em> earlier; cannot assign retrospectively</td>
+</tr>
+</tbody>
+</table>
+<h3 id="section-38">Tactical reminders tied to the save</h3>
+<ul>
+<li><strong>Chad:</strong> Battle Master control maneuvers + Action Surge + Berserker Rage/Frenzied Throw. The save lists <strong>Black Hole</strong>, <strong>Mind Blast</strong>, <strong>Repulsor</strong> and other illithid powers: use them for crowd positioning and boss/add control. Check how your multiclass mod/level mix affects Extra Attack and bonus actions.</li>
+<li><strong>Maurow:</strong> Open Hand stun, Flurry techniques, Step of the Wind, and Ki Resonation for multi-target pressure. <strong>Gloves of Soul Catching</strong> are a standout Act 3 target. Your save lists <strong>Sentient Amulet</strong> interactions and Ki Restoration, making the Open Hand Temple monk quest immediately pertinent.</li>
+<li><strong>Gale:</strong> Storm Sorcerer with <strong>Counterspell, Haste, Call Lightning, Create Water, Magic Missile, Scorching Ray, Misty Step</strong> recorded. <strong>Wet → lightning</strong> is a natural game plan, with attention to friendly fire and concentration.</li>
+<li><strong>Lae’zel:</strong> Oath of Ancients Paladin with <strong>Aura of Protection, Aura of Warding, Lay on Hands, Smite, Moonbeam and Misty Step</strong> recorded. Put her close enough for auras during hazardous boss fights; save smite slots for high-value hits.</li>
+<li><strong>Reserves:</strong> Astarion is <strong>Wizard/Cleric</strong>, Karlach <strong>Gloom Stalker Ranger</strong>, Wyll <strong>Wizard/Cleric</strong>. Do not rely on their default rogue/barbarian/warlock strategies. Level them and inspect their actual available spells before dispatch.</li>
+</ul>
+<hr/>
+<h2 id="section-39">Act 3 character bonuses and missable mechanical advantages</h2>
+<p>These are <strong>optional power and completion audits</strong>, not objectives proven unfinished by the save. The two permanent player characters deserve first consideration; some gains cannot be fully undone or moved to another character later.</p>
+<ul>
+<li class="task-item" id="task-B01"><input aria-label="Mark B01 checked" class="task-checkbox" data-task-id="B01" type="checkbox"/><strong>B01 — Stormshore Tabernacle: Anointed in Splendour.</strong> Check the deity offerings for <strong>+2 to saving throws</strong> for each desired character; the required donation scales with level and difficulty. It can be acquired separately by <strong>Chad</strong> and <strong>Maurow</strong>. Gale may obtain it through the appropriate Mystra reconciliation dialogue. Check the effect after long rests and avoid temple theft if you do not want related consequences.</li>
+<li class="task-item" id="task-B02"><input aria-label="Mark B02 checked" class="task-checkbox" data-task-id="B02" type="checkbox"/><strong>B02 — Mirror of Loss: Chad.</strong> Prepare for the <strong>DC 25 Religion</strong> interaction. If eligible, exchange a memory for up to <strong>+2 to a chosen ability score</strong> (with special additional Charisma possibilities). Use <strong>Remove Curse</strong> afterward as needed to clear the matching ability penalty. Save beforehand; version and story choices affect access.</li>
+<li class="task-item" id="task-B03"><input aria-label="Mark B03 checked" class="task-checkbox" data-task-id="B03" type="checkbox"/><strong>B03 — Mirror of Loss: Maurow.</strong> Independently attempt the mirror on <strong>Maurow</strong> as well; a successful interaction is per character, not a single party-wide reward. Decide whether DEX, STR or another score best fits his actual Open Hand build rather than assuming a tavern-brawler respec.</li>
+<li class="task-item" id="task-B04"><input aria-label="Mark B04 checked" class="task-checkbox" data-task-id="B04" type="checkbox"/><strong>B04 — Mirror of Loss: companions.</strong> If accessible and worthwhile, repeat with <strong>Gale</strong> and <strong>Lae’zel</strong>, and bring other companion characters for their own attempts. Do not alter Shadowheart’s personal ending merely to farm a bonus.</li>
+<li class="task-item" id="task-B05"><input aria-label="Mark B05 checked" class="task-checkbox" data-task-id="B05" type="checkbox"/><strong>B05 — Cursed Monk: Monk’s Hideous Laughter.</strong> At the Open Hand Temple tomb, <strong>accepting the monk’s curse</strong> can grant <strong>Tasha’s Hideous Laughter once per long rest</strong>, but failing checks can cause Wisdom loss and the Sentient Amulet can lose its original magic. Since <strong>Maurow</strong> is a Monk, decide deliberately who receives this rather than assuming its class-flavored name is a free monk upgrade.</li>
+<li class="task-item" id="task-B06"><input aria-label="Mark B06 checked" class="task-checkbox" data-task-id="B06" type="checkbox"/><strong>B06 — Necromancy of Thay completion.</strong> Confirm the original reader and the <strong>Tharchiate Codex</strong> interaction from L17. The reward can include <strong>Danse Macabre</strong> and <strong>Tharchiate Vigour</strong> when processed correctly; the original book reader matters.</li>
+<li class="task-item" id="task-B07"><input aria-label="Mark B07 checked" class="task-checkbox" data-task-id="B07" type="checkbox"/><strong>B07 — Circus statue and gear.</strong> If you want a commissioned statue of a particular character, order it from <strong>Boney and Stoney</strong> for <strong>5,000 gp</strong> while the circus remains; its beneficial effect is limited to the depicted character and subject to game mechanics.</li>
+<li class="task-item" id="task-B08"><input aria-label="Mark B08 checked" class="task-checkbox" data-task-id="B08" type="checkbox"/><strong>B08 — House of Hope permanent gear allocation.</strong> After rescuing Hope, equip <strong>Gloves of Soul Catching</strong> on <strong>Maurow</strong> unless a modded combination is demonstrably stronger. Audit Archive Strength/Constitution items separately for Chad and Gale.</li>
+<li class="task-item" id="task-B09"><input aria-label="Mark B09 checked" class="task-checkbox" data-task-id="B09" type="checkbox"/><strong>B09 — Final physical character sheet audit.</strong> Check whether buffs, feat choices, abilities and permanent changes are genuinely present on Chad and Maurow. The exported save lists spell/ability IDs but does not reliably resolve all passive permanent conditions.</li>
+</ul>
+<h2 id="section-40">Data provenance and what this checklist means</h2>
+<p><strong>Project files reviewed:</strong> <code>campaign-state.json</code> (save-derived raw character, quest and location data), <code>latest-meta.json</code> (save/parser metadata), <code>changes.json</code> (comparison summary) and <code>act3-guide.md</code> (original uncalibrated index). This expanded guide is an independently authored walkthrough; <strong>do not overwrite the raw state file from manually ticked boxes</strong>. The save file remains authoritative, and manual notes should track confirmation and exceptions separately.</p>
+<p><strong>Evidence distinctions:</strong></p>
+<ul>
+<li><strong>Save-confirmed:</strong> characters, active group, base class/subclass names, levels, some recorded spells and items, region, known waypoints, quest ID counts, save metadata.</li>
+<li><strong>Externally researched:</strong> quest sequences, optional routes, missable loot, timer rules, boss tactics, potential allies, permanent bonuses. These can be affected by patches and mods.</li>
+<li><strong>Unverified:</strong> which detailed sub-objectives have already been completed, whether every NPC survived earlier acts, ownership of some items, the hostage identity, whether the player has already triggered countdowns, and whether a given ally is eligible in this run.</li>
+</ul>
+<p><strong>Useful references</strong> (Baldur’s Gate 3 community wiki, reviewed November 2026):</p>
+<ul>
+<li><a href="https://bg3.wiki/wiki/Act_Three">Act Three overview</a>, <a href="https://bg3.wiki/wiki/Time_sensitive_activities">time-sensitive activities</a>, <a href="https://bg3.wiki/wiki/Iron_Throne">Iron Throne</a>, <a href="https://bg3.wiki/wiki/Save_the_Gondians">Save the Gondians</a>, <a href="https://bg3.wiki/wiki/Rescue_the_Grand_Duke">Rescue the Grand Duke</a></li>
+<li><a href="https://bg3.wiki/wiki/Find_the_Missing_Letters">Find the Missing Letters</a>, <a href="https://bg3.wiki/wiki/Tara">Tara’s rooftop encounters</a>, <a href="https://bg3.wiki/wiki/Find_Dribbles_the_Clown">Find Dribbles the Clown</a>, <a href="https://bg3.wiki/wiki/Investigate_the_Suspicious_Toys">Investigate the Suspicious Toys</a></li>
+<li><a href="https://bg3.wiki/wiki/Find_the_Nightsong">Find the Nightsong</a>, <a href="https://bg3.wiki/wiki/House_of_Hope">House of Hope</a>, <a href="https://bg3.wiki/wiki/Rescue_Orin%27s_Victim">Rescue Orin’s Victim</a>, <a href="https://bg3.wiki/wiki/Permanent_Bonuses">permanent bonuses</a></li>
+</ul>
+<p><strong>How to use it with future saves:</strong> Preserve the checklist item identifiers (R/W/L/C/H/G/O/F/E/B series) as stable, human-readable targets. Re-run the save extractor, calibrate the quest-state mapping against BG3 flags, then compare to previous saves. Update only <em>verified</em> task status; a missing quest record is not proof of completion or failure. Retain player confirmations separately.</p>
+<footer>Offline-compatible checklist. Checkmarks are stored in this browser only (when local storage is available). Export progress regularly if you want to move devices or preserve a separate manual record. A new save-state extract remains the source of truth.</footer></article></main>
+<script>
+(()=>{
+const saveHash="5fd51c72de0caaafe6a29c201c6b47ae06f3579deff1719720683589a30ff986";
+const KEY="bg3-chad-maurow-act3-checkmarks-"+saveHash;
+const tasks=[...document.querySelectorAll('input.task-checkbox')];
+const byId=new Map(tasks.map(t=>[t.dataset.taskId,t]));
+const progress=document.getElementById('progressText'), fill=document.getElementById('progressFill'), msg=document.getElementById('feedback'), search=document.getElementById('search'), hideDone=document.getElementById('hideDone');
+let state={};
+function tell(t){msg.textContent=t}
+function load(){try{const v=localStorage.getItem(KEY);if(v)state=JSON.parse(v)}catch(e){tell('Local storage not available; export your progress to keep it.')} }
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){tell('Storage blocked: use Export to preserve progress.')}}
+function render(){let checked=0;for(const t of tasks){const yes=!!state[t.dataset.taskId];t.checked=yes; if(yes)checked++;const node=t.closest('li,tr');node?.classList.toggle('completed',yes)} progress.textContent=`${checked} / ${tasks.length} checked`;fill.style.width=(checked*100/tasks.length).toFixed(1)+'%';filter()}
+function filter(){const q=search.value.toLocaleLowerCase().trim();for(const t of tasks){const node=t.closest('li,tr');const text=node.textContent.toLocaleLowerCase();node.classList.toggle('hidden-task',!!(q&&!text.includes(q))||(hideDone.checked&&t.checked))}}
+for(const t of tasks)t.addEventListener('change',()=>{state[t.dataset.taskId]=t.checked;persist();render()});
+search.addEventListener('input',filter);hideDone.addEventListener('change',filter);
+document.getElementById('reset').addEventListener('click',()=>{if(!confirm('Clear all manually checked tasks in this browser?'))return;state={};persist();render();tell('All checkmarks cleared.')});
+document.getElementById('export').addEventListener('click',()=>{const payload={schema_version:1,kind:'bg3_manual_progress',source_save_sha256:saveHash,exported_at:new Date().toISOString(),checked:Object.fromEntries([...byId.keys()].map(x=>[x,!!state[x]]))};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='bg3-act3-player-notes.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),200);tell('Checkmarks exported as JSON.')});
+document.getElementById('importFile').addEventListener('change',async e=>{const file=e.target.files?.[0];if(!file)return;try{const val=JSON.parse(await file.text());let incoming={};if(val.checked&&typeof val.checked==='object')incoming=val.checked;else if(Array.isArray(val.tasks))incoming=Object.fromEntries(val.tasks.map(t=>[t.id,t.confirmed===true]));else throw Error('No checked map or tasks array found');let n=0;for(const [id,v] of Object.entries(incoming))if(byId.has(id)){state[id]=v===true;n++};persist();render();tell(`Imported ${n} task states.`)}catch(err){alert('Could not import checklist: '+err.message)}e.target.value=''});
+load();render();
+})();
+</script></body></html>
